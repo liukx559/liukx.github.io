@@ -67,23 +67,24 @@ main {
 
 .note{
   width: 100%;
+  height: auto;
   height: 243px;
   background-color: whitesmoke;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px 38px 0 24px;
-  margin: 30px 10px 0 0 ;
+  padding: 20px 0px 0 24px;
+  margin-top: 30px;
   border-radius: 5px;
 }
 .projects {
   width: 100%;
+  height: auto;
   min-height: 243px;
   margin-bottom: 20px;
-  margin-left: 20px;
   background-color: rgba(240, 237, 237, 0.904);
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px 38px 0 24px;
-  margin:30px 10px  0 0
+  margin-top: 30px;
+  padding: 20px 0px 0 24px;
 }
 /* .projects {
   width: 40%;
@@ -138,20 +139,27 @@ td{
 }
 .projects_name
 {
+  width: 200px;
   text-align: center;
-  width: 300px;
+
 }
 .projects_content
 {
-  margin: 10px 50px 0px 50px;
-  width: 400px;
-
-}
-.projects_tech{
+  padding: 20px 10px 20px 10px;
   text-align: center;
   width: 400px;
 }
+.projects_tech{
+  text-align: center;
+  width: 300px ;
+}
 .projects table{
   padding: 5px 0 30px 0;
+  width: 100%;
+  overflow:scroll
 
+}
+.link{
+  text-align: center;
+  width: 100px;
 }
