@@ -1,17 +1,19 @@
 /* styles.css */
 body {
   font-family: "Roboto", sans-serif;
-  margin: 0;
+  margin: 0 auto;  
   padding: 0;
-  background-color: #f5f5f5;
+
 }
 
 header {
+  width: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(home.jpg);
-  height: 100vh;
+  height: 85vh;
   background-size: cover;
-  background-position: center;
+  /* background-position: center; */
+  background-position: center center; 
 }
 .title {
   position: absolute;
@@ -28,24 +30,27 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px;
+  margin: 0px;
 }
 
 .main {
-  width: 100%;
+
   background: white;
+  padding: auto;
 }
 
-.note {
-  height: 243px;
+.con {
+  height: auto;
   background: white;
+  width:100% ;
+
 }
 
 .note_title {
   font-size: 18px;
   color: #3f434f;
   line-height: 18px;
-  padding-top: 36px;
+  padding-top: 18px;
 }
 .note_list {
   margin-top: 23px;
@@ -55,53 +60,98 @@ main {
 }
 
 .note_list li a {
-  font-size: 12px;
+  font-size: 15px;
   color: #565656;
-  line-height: 25px;
+  line-height: 40px;
 }
 
-.note_l {
-  width: 50%;
+.note{
+  width: 100%;
   height: 243px;
-  /* background: rebeccapurple; */
-  padding-left: 21px;
+  background-color: whitesmoke;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px 38px 0 24px;
+  margin: 30px 10px 0 0 ;
+  border-radius: 5px;
 }
-
-#projects {
-  width: 50%;
+.projects {
+  width: 100%;
+  min-height: 243px;
   margin-bottom: 20px;
-  background-color: rgba(221, 216, 216, 0.788);
+  margin-left: 20px;
+  background-color: rgba(240, 237, 237, 0.904);
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 20px 38px 0 24px;
+  margin:30px 10px  0 0
 }
-#skills,
-#profile {
+/* .projects {
+  width: 40%;
+  height: 243px;
+  background: #fbfbfb url("../images/ma_05.jpg") no-repeat right bottom;
+  float: left;
+  padding: 0 38px 0 24px;
+} */
+
+.projects_title {
+  font-size: 18px;
+  color: #3f434f;
+  line-height: 18px;
+  padding-top: 18px;
+}
+.skills{
+  width: 100%;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+
+}
+
+
+.contact {
   width: 100%;
   margin-bottom: 20px;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-#contact {
-  width: 100%;
-  margin-bottom: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
 }
 
-.h1 {
+h1 {
   width: 100%;
-  font-size: 1.5em;
   margin-bottom: 10px;
+  padding-left: 10px;
 }
 
 .h2 {
   font-size: 1.2em;
   margin-bottom: 10px;
+}
+p{
+  padding-left: 10px;
+  font-size: 1em;
+}
+td{
+  font-size: 15px;
+  word-break: break-word;
+}
+.projects_name
+{
+  text-align: center;
+  width: 300px;
+}
+.projects_content
+{
+  margin: 10px 50px 0px 50px;
+  width: 400px;
+
+}
+.projects_tech{
+  text-align: center;
+  width: 400px;
+}
+.projects table{
+  padding: 5px 0 30px 0;
+
 }

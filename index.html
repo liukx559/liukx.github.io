@@ -17,71 +17,120 @@
     <main>
     <div class="main">
         <h1>欢迎来到我的博客</h1>
-      <div class="profile">
-        
-        <p>我是你的名字，我是一名职业，我对技术领域的兴趣和热情...</p>
-      </div>
+        <p>我对技术领域的兴趣和热情...</p>
 
-      <div class="skills">
+
+      <!-- <div class="skills">
         <h2>我的技能</h2>
         <ul>
-          <li>技能1</li>
-          <li>技能2</li>
-          <li>技能3</li>
-          <!-- 其他技能... -->
-        </ul>
-      </div>
-
+          <li>Java</li>
+          <li>MySQL</li>
+          <li>Redis</li>
+          <li>……</li>
       
-      <div class="projects">
-        <h2>我的项目仓库</h2>
-        <table>
-          <tr>
-            <th>项目</th>
-            <th>描述</th>
-            <th>仓库链接</th>
-          </tr>
-          <tr>
-            <td>项目1</td>
-            <td>项目描述...</td>
-            <td>
-              <a href="https://github.com/your-username/project1">查看仓库</a>
-            </td>
-          </tr>
-          <!-- 其他项目... -->
-        </table>
-      </div>
-
-      <div class="note">
+        </ul>
+      </div> -->
+      <div class="con">
         <!-- 最左侧的盒子 -->
-              <div class="note_l">
-            <h3 class="note_title">我的学习笔记</h3>
+        <div class="note">
+            <h2 class="note_title">我的学习笔记</h2>
             <ul class="note_list">
                 <li>
-                    <a>震惊！一小伙深夜在电脑屏幕前狂笑，原因竟是...</a>
+                    <a href="note\software exam\html\readme.html">软考笔记</a>
                     
                 </li>
                 <li>
-                    <a>震惊！一小伙深夜在电脑屏幕前狂笑，原因竟是...</a>
+                    <a href="note\leetcode\readme.html">leetcode刷题笔记</a>
                     
                 </li>
                 <li>
-                    <a>震惊！一小伙深夜在电脑屏幕前狂笑，原因竟是...</a>
+                    <a href="note\javainterview\interview.html" >java学习笔记</a>
                     
-                </li>
-                <li>
-                    <a>震惊！一小伙深夜在电脑屏幕前狂笑，原因竟是...</a>
-                    
-                </li>
-                <li>
-                    <a>震惊！一小伙深夜在电脑屏幕前狂笑，原因竟是...</a>
-                    
-                </li>
-                <li>
-                    <a>震惊！一小伙深夜在电脑屏幕前狂笑，原因竟是...</a>
                 </li>
             </ul>
+          </div>
+          
+        <div class="projects">
+          <h2 class="projects_title">我的项目仓库</h2>
+          <table>
+            <tr>
+              <th >项目</th>
+              <th>描述</th>
+              <th>技术栈</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td   class="projects_name">品质优选小程序</td>
+              <td>
+                <div   class="projects_content">
+                本项目是一个社区团购生鲜商品、日常用品的的小程序平台。用户通过小程序平台下单。
+                次日平台在收集好订单之后，调动供应链，从仓库发货到自提点。用户前往自提点提货。
+                </div>
+              </td>
+              <td class="projects_tech">
+                SpringBoot+SpringCloud+MyBatis-Plus+Redis+MySQL+RabbitMQ+Docker
+              </td>
+              <td>
+                <a href="https://github.com/liukx559/Shopping-Mini-Program">查看详情</a>
+              </td>
+            </tr>
+            <tr>
+              <td   class="projects_name">mybatis_springboot</td>
+            <td>
+              <div   class="projects_content">
+                mybatis整合到springboot的demo和学习笔记。
+              </div>
+            </td>
+            <td class="projects_tech">
+              mybatis+springboot
+            </td>
+            <td>
+              <a href="https://github.com/liukx559/mybatis_springboot_demo">查看详情</a>
+            </td>
+          </tr>
+            <tr>
+              <td   class="projects_name"> k-WTA-network-with-distributed-dynamic-topology</td>
+              <td>
+                <div   class="projects_content">
+                  论文《Performance Evaluation of Distributed k-WTA on Dynamic Undirected Connected Graphs and Its Application to Task Allocation》的实验代码，扩展了分布式k-WTA网络在动态拓扑中的应用，可供同行研究人员快速复现论文结果，并将其应用到目标追踪任务分配中。
+                </div>
+              </td>
+              <td class="projects_tech">
+                Matlab
+              </td>
+              <td>
+                <a href="https://github.com/liukx559/k-WTA-network-with-distributed-dynamic-topology">查看详情</a>
+              </td>
+            </tr>
+            <tr>
+              <td   class="projects_name"> deep-photo-style-transfer
+                </td>
+              <td>
+                <div   class="projects_content">
+                  本项目为 Deep Photo Style Transfer 的win系统复现代码
+                </div>
+              </td>
+              <td class="projects_tech">
+                Anaconda Python+Tensorflow+deep learning 
+              </td>
+              <td>
+                <a href="https://github.com/liukx559/deep-photo-style-transfer">查看详情</a>
+              </td>
+            </tr>
+            <!-- 其他项目... -->
+          </table>
+        </div>
+      </div>
+    
+        
+
+  </div>
+         
     </div>
+      
+      
+
+      
     
       
         
@@ -89,12 +138,10 @@
       </main>
     <footer>
         <div class="contact">
-            <div class="contact">
                 <p style="text-align: center;">
                     邮箱：
                     <a href="mailto:liu_k_x559@163.com"> liu_k_x559@163.com</a>
                 </p>
-            </div>
           </div>
     </footer>
   </body>

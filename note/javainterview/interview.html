@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>interview.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*
+
+Arduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #FFFFFF;
+}
+
+.hljs,
+.hljs-subst {
+  color: #434f54;
+}
+
+.hljs-keyword,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-doctag,
+.hljs-name {
+  color: #00979D;
+}
+
+.hljs-built_in,
+.hljs-literal,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
+  color: #D35400;
+}
+
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #00979D;
+}
+
+.hljs-type,
+.hljs-string,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
+  color: #005C5F;
+}
+
+.hljs-title,
+.hljs-section {
+  color: #880000;
+  font-weight: bold;
+}
+
+.hljs-comment {
+  color: rgba(149,165,166,.8);
+}
+
+.hljs-meta-keyword {
+  color: #728E00;
+}
+
+.hljs-meta {
+  color: #434f54;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-function {
+  color: #728E00;
+}
+
+.hljs-number {
+  color: #8A7B52;  
+}
+
+</style>
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family:   "HelveticaNeue-Light", sans-serif, "宋体","Segoe WPC", "Segoe UI", "SFUIText-Light","Droid Sans Fallback";
+	font-size: 18px;
+	padding: 0 12px;
+	line-height: 1.6;
+	word-wrap: break-word;
+	color: #333333;
+}
+
+.content-wrapper{
+	max-width: 860px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom: 1px solid #eee;
+}
+
+
+h2{
+	padding-bottom: .3em;
+    font-size: 2em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+h3{
+	font-size: 1.75em;
+    line-height: 1.225;
+}
+
+h1, h2, h3 {
+	font-weight: bold;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+.table-of-contents li{
+	list-style-type: initial;
+}
+</style>
+
+<style>
+@font-face{font-family:KaTeX_AMS;font-style:normal;font-weight:400;src:url(fonts/KaTeX_AMS-Regular.woff2) format("woff2"),url(fonts/KaTeX_AMS-Regular.woff) format("woff"),url(fonts/KaTeX_AMS-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Caligraphic;font-style:normal;font-weight:700;src:url(fonts/KaTeX_Caligraphic-Bold.woff2) format("woff2"),url(fonts/KaTeX_Caligraphic-Bold.woff) format("woff"),url(fonts/KaTeX_Caligraphic-Bold.ttf) format("truetype")}@font-face{font-family:KaTeX_Caligraphic;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Caligraphic-Regular.woff2) format("woff2"),url(fonts/KaTeX_Caligraphic-Regular.woff) format("woff"),url(fonts/KaTeX_Caligraphic-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Fraktur;font-style:normal;font-weight:700;src:url(fonts/KaTeX_Fraktur-Bold.woff2) format("woff2"),url(fonts/KaTeX_Fraktur-Bold.woff) format("woff"),url(fonts/KaTeX_Fraktur-Bold.ttf) format("truetype")}@font-face{font-family:KaTeX_Fraktur;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Fraktur-Regular.woff2) format("woff2"),url(fonts/KaTeX_Fraktur-Regular.woff) format("woff"),url(fonts/KaTeX_Fraktur-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Main;font-style:normal;font-weight:700;src:url(fonts/KaTeX_Main-Bold.woff2) format("woff2"),url(fonts/KaTeX_Main-Bold.woff) format("woff"),url(fonts/KaTeX_Main-Bold.ttf) format("truetype")}@font-face{font-family:KaTeX_Main;font-style:italic;font-weight:700;src:url(fonts/KaTeX_Main-BoldItalic.woff2) format("woff2"),url(fonts/KaTeX_Main-BoldItalic.woff) format("woff"),url(fonts/KaTeX_Main-BoldItalic.ttf) format("truetype")}@font-face{font-family:KaTeX_Main;font-style:italic;font-weight:400;src:url(fonts/KaTeX_Main-Italic.woff2) format("woff2"),url(fonts/KaTeX_Main-Italic.woff) format("woff"),url(fonts/KaTeX_Main-Italic.ttf) format("truetype")}@font-face{font-family:KaTeX_Main;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Main-Regular.woff2) format("woff2"),url(fonts/KaTeX_Main-Regular.woff) format("woff"),url(fonts/KaTeX_Main-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Math;font-style:italic;font-weight:700;src:url(fonts/KaTeX_Math-BoldItalic.woff2) format("woff2"),url(fonts/KaTeX_Math-BoldItalic.woff) format("woff"),url(fonts/KaTeX_Math-BoldItalic.ttf) format("truetype")}@font-face{font-family:KaTeX_Math;font-style:italic;font-weight:400;src:url(fonts/KaTeX_Math-Italic.woff2) format("woff2"),url(fonts/KaTeX_Math-Italic.woff) format("woff"),url(fonts/KaTeX_Math-Italic.ttf) format("truetype")}@font-face{font-family:"KaTeX_SansSerif";font-style:normal;font-weight:700;src:url(fonts/KaTeX_SansSerif-Bold.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Bold.woff) format("woff"),url(fonts/KaTeX_SansSerif-Bold.ttf) format("truetype")}@font-face{font-family:"KaTeX_SansSerif";font-style:italic;font-weight:400;src:url(fonts/KaTeX_SansSerif-Italic.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Italic.woff) format("woff"),url(fonts/KaTeX_SansSerif-Italic.ttf) format("truetype")}@font-face{font-family:"KaTeX_SansSerif";font-style:normal;font-weight:400;src:url(fonts/KaTeX_SansSerif-Regular.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Regular.woff) format("woff"),url(fonts/KaTeX_SansSerif-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Script;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Script-Regular.woff2) format("woff2"),url(fonts/KaTeX_Script-Regular.woff) format("woff"),url(fonts/KaTeX_Script-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Size1;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Size1-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size1-Regular.woff) format("woff"),url(fonts/KaTeX_Size1-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Size2;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Size2-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size2-Regular.woff) format("woff"),url(fonts/KaTeX_Size2-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Size3;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Size3-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size3-Regular.woff) format("woff"),url(fonts/KaTeX_Size3-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Size4;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Size4-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size4-Regular.woff) format("woff"),url(fonts/KaTeX_Size4-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Typewriter;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Typewriter-Regular.woff2) format("woff2"),url(fonts/KaTeX_Typewriter-Regular.woff) format("woff"),url(fonts/KaTeX_Typewriter-Regular.ttf) format("truetype")}.katex{text-rendering:auto;font:normal 1.21em KaTeX_Main,Times New Roman,serif;line-height:1.2;text-indent:0}.katex *{-ms-high-contrast-adjust:none!important;border-color:currentColor}.katex .katex-version:after{content:"0.16.2"}.katex .katex-mathml{clip:rect(1px,1px,1px,1px);border:0;height:1px;overflow:hidden;padding:0;position:absolute;width:1px}.katex .katex-html>.newline{display:block}.katex .base{position:relative;white-space:nowrap;width:-webkit-min-content;width:-moz-min-content;width:min-content}.katex .base,.katex .strut{display:inline-block}.katex .textbf{font-weight:700}.katex .textit{font-style:italic}.katex .textrm{font-family:KaTeX_Main}.katex .textsf{font-family:KaTeX_SansSerif}.katex .texttt{font-family:KaTeX_Typewriter}.katex .mathnormal{font-family:KaTeX_Math;font-style:italic}.katex .mathit{font-family:KaTeX_Main;font-style:italic}.katex .mathrm{font-style:normal}.katex .mathbf{font-family:KaTeX_Main;font-weight:700}.katex .boldsymbol{font-family:KaTeX_Math;font-style:italic;font-weight:700}.katex .amsrm,.katex .mathbb,.katex .textbb{font-family:KaTeX_AMS}.katex .mathcal{font-family:KaTeX_Caligraphic}.katex .mathfrak,.katex .textfrak{font-family:KaTeX_Fraktur}.katex .mathtt{font-family:KaTeX_Typewriter}.katex .mathscr,.katex .textscr{font-family:KaTeX_Script}.katex .mathsf,.katex .textsf{font-family:KaTeX_SansSerif}.katex .mathboldsf,.katex .textboldsf{font-family:KaTeX_SansSerif;font-weight:700}.katex .mathitsf,.katex .textitsf{font-family:KaTeX_SansSerif;font-style:italic}.katex .mainrm{font-family:KaTeX_Main;font-style:normal}.katex .vlist-t{border-collapse:collapse;display:inline-table;table-layout:fixed}.katex .vlist-r{display:table-row}.katex .vlist{display:table-cell;position:relative;vertical-align:bottom}.katex .vlist>span{display:block;height:0;position:relative}.katex .vlist>span>span{display:inline-block}.katex .vlist>span>.pstrut{overflow:hidden;width:0}.katex .vlist-t2{margin-right:-2px}.katex .vlist-s{display:table-cell;font-size:1px;min-width:2px;vertical-align:bottom;width:2px}.katex .vbox{align-items:baseline;display:inline-flex;flex-direction:column}.katex .hbox{width:100%}.katex .hbox,.katex .thinbox{display:inline-flex;flex-direction:row}.katex .thinbox{max-width:0;width:0}.katex .msupsub{text-align:left}.katex .mfrac>span>span{text-align:center}.katex .mfrac .frac-line{border-bottom-style:solid;display:inline-block;width:100%}.katex .hdashline,.katex .hline,.katex .mfrac .frac-line,.katex .overline .overline-line,.katex .rule,.katex .underline .underline-line{min-height:1px}.katex .mspace{display:inline-block}.katex .clap,.katex .llap,.katex .rlap{position:relative;width:0}.katex .clap>.inner,.katex .llap>.inner,.katex .rlap>.inner{position:absolute}.katex .clap>.fix,.katex .llap>.fix,.katex .rlap>.fix{display:inline-block}.katex .llap>.inner{right:0}.katex .clap>.inner,.katex .rlap>.inner{left:0}.katex .clap>.inner>span{margin-left:-50%;margin-right:50%}.katex .rule{border:0 solid;display:inline-block;position:relative}.katex .hline,.katex .overline .overline-line,.katex .underline .underline-line{border-bottom-style:solid;display:inline-block;width:100%}.katex .hdashline{border-bottom-style:dashed;display:inline-block;width:100%}.katex .sqrt>.root{margin-left:.27777778em;margin-right:-.55555556em}.katex .fontsize-ensurer.reset-size1.size1,.katex .sizing.reset-size1.size1{font-size:1em}.katex .fontsize-ensurer.reset-size1.size2,.katex .sizing.reset-size1.size2{font-size:1.2em}.katex .fontsize-ensurer.reset-size1.size3,.katex .sizing.reset-size1.size3{font-size:1.4em}.katex .fontsize-ensurer.reset-size1.size4,.katex .sizing.reset-size1.size4{font-size:1.6em}.katex .fontsize-ensurer.reset-size1.size5,.katex .sizing.reset-size1.size5{font-size:1.8em}.katex .fontsize-ensurer.reset-size1.size6,.katex .sizing.reset-size1.size6{font-size:2em}.katex .fontsize-ensurer.reset-size1.size7,.katex .sizing.reset-size1.size7{font-size:2.4em}.katex .fontsize-ensurer.reset-size1.size8,.katex .sizing.reset-size1.size8{font-size:2.88em}.katex .fontsize-ensurer.reset-size1.size9,.katex .sizing.reset-size1.size9{font-size:3.456em}.katex .fontsize-ensurer.reset-size1.size10,.katex .sizing.reset-size1.size10{font-size:4.148em}.katex .fontsize-ensurer.reset-size1.size11,.katex .sizing.reset-size1.size11{font-size:4.976em}.katex .fontsize-ensurer.reset-size2.size1,.katex .sizing.reset-size2.size1{font-size:.83333333em}.katex .fontsize-ensurer.reset-size2.size2,.katex .sizing.reset-size2.size2{font-size:1em}.katex .fontsize-ensurer.reset-size2.size3,.katex .sizing.reset-size2.size3{font-size:1.16666667em}.katex .fontsize-ensurer.reset-size2.size4,.katex .sizing.reset-size2.size4{font-size:1.33333333em}.katex .fontsize-ensurer.reset-size2.size5,.katex .sizing.reset-size2.size5{font-size:1.5em}.katex .fontsize-ensurer.reset-size2.size6,.katex .sizing.reset-size2.size6{font-size:1.66666667em}.katex .fontsize-ensurer.reset-size2.size7,.katex .sizing.reset-size2.size7{font-size:2em}.katex .fontsize-ensurer.reset-size2.size8,.katex .sizing.reset-size2.size8{font-size:2.4em}.katex .fontsize-ensurer.reset-size2.size9,.katex .sizing.reset-size2.size9{font-size:2.88em}.katex .fontsize-ensurer.reset-size2.size10,.katex .sizing.reset-size2.size10{font-size:3.45666667em}.katex .fontsize-ensurer.reset-size2.size11,.katex .sizing.reset-size2.size11{font-size:4.14666667em}.katex .fontsize-ensurer.reset-size3.size1,.katex .sizing.reset-size3.size1{font-size:.71428571em}.katex .fontsize-ensurer.reset-size3.size2,.katex .sizing.reset-size3.size2{font-size:.85714286em}.katex .fontsize-ensurer.reset-size3.size3,.katex .sizing.reset-size3.size3{font-size:1em}.katex .fontsize-ensurer.reset-size3.size4,.katex .sizing.reset-size3.size4{font-size:1.14285714em}.katex .fontsize-ensurer.reset-size3.size5,.katex .sizing.reset-size3.size5{font-size:1.28571429em}.katex .fontsize-ensurer.reset-size3.size6,.katex .sizing.reset-size3.size6{font-size:1.42857143em}.katex .fontsize-ensurer.reset-size3.size7,.katex .sizing.reset-size3.size7{font-size:1.71428571em}.katex .fontsize-ensurer.reset-size3.size8,.katex .sizing.reset-size3.size8{font-size:2.05714286em}.katex .fontsize-ensurer.reset-size3.size9,.katex .sizing.reset-size3.size9{font-size:2.46857143em}.katex .fontsize-ensurer.reset-size3.size10,.katex .sizing.reset-size3.size10{font-size:2.96285714em}.katex .fontsize-ensurer.reset-size3.size11,.katex .sizing.reset-size3.size11{font-size:3.55428571em}.katex .fontsize-ensurer.reset-size4.size1,.katex .sizing.reset-size4.size1{font-size:.625em}.katex .fontsize-ensurer.reset-size4.size2,.katex .sizing.reset-size4.size2{font-size:.75em}.katex .fontsize-ensurer.reset-size4.size3,.katex .sizing.reset-size4.size3{font-size:.875em}.katex .fontsize-ensurer.reset-size4.size4,.katex .sizing.reset-size4.size4{font-size:1em}.katex .fontsize-ensurer.reset-size4.size5,.katex .sizing.reset-size4.size5{font-size:1.125em}.katex .fontsize-ensurer.reset-size4.size6,.katex .sizing.reset-size4.size6{font-size:1.25em}.katex .fontsize-ensurer.reset-size4.size7,.katex .sizing.reset-size4.size7{font-size:1.5em}.katex .fontsize-ensurer.reset-size4.size8,.katex .sizing.reset-size4.size8{font-size:1.8em}.katex .fontsize-ensurer.reset-size4.size9,.katex .sizing.reset-size4.size9{font-size:2.16em}.katex .fontsize-ensurer.reset-size4.size10,.katex .sizing.reset-size4.size10{font-size:2.5925em}.katex .fontsize-ensurer.reset-size4.size11,.katex .sizing.reset-size4.size11{font-size:3.11em}.katex .fontsize-ensurer.reset-size5.size1,.katex .sizing.reset-size5.size1{font-size:.55555556em}.katex .fontsize-ensurer.reset-size5.size2,.katex .sizing.reset-size5.size2{font-size:.66666667em}.katex .fontsize-ensurer.reset-size5.size3,.katex .sizing.reset-size5.size3{font-size:.77777778em}.katex .fontsize-ensurer.reset-size5.size4,.katex .sizing.reset-size5.size4{font-size:.88888889em}.katex .fontsize-ensurer.reset-size5.size5,.katex .sizing.reset-size5.size5{font-size:1em}.katex .fontsize-ensurer.reset-size5.size6,.katex .sizing.reset-size5.size6{font-size:1.11111111em}.katex .fontsize-ensurer.reset-size5.size7,.katex .sizing.reset-size5.size7{font-size:1.33333333em}.katex .fontsize-ensurer.reset-size5.size8,.katex .sizing.reset-size5.size8{font-size:1.6em}.katex .fontsize-ensurer.reset-size5.size9,.katex .sizing.reset-size5.size9{font-size:1.92em}.katex .fontsize-ensurer.reset-size5.size10,.katex .sizing.reset-size5.size10{font-size:2.30444444em}.katex .fontsize-ensurer.reset-size5.size11,.katex .sizing.reset-size5.size11{font-size:2.76444444em}.katex .fontsize-ensurer.reset-size6.size1,.katex .sizing.reset-size6.size1{font-size:.5em}.katex .fontsize-ensurer.reset-size6.size2,.katex .sizing.reset-size6.size2{font-size:.6em}.katex .fontsize-ensurer.reset-size6.size3,.katex .sizing.reset-size6.size3{font-size:.7em}.katex .fontsize-ensurer.reset-size6.size4,.katex .sizing.reset-size6.size4{font-size:.8em}.katex .fontsize-ensurer.reset-size6.size5,.katex .sizing.reset-size6.size5{font-size:.9em}.katex .fontsize-ensurer.reset-size6.size6,.katex .sizing.reset-size6.size6{font-size:1em}.katex .fontsize-ensurer.reset-size6.size7,.katex .sizing.reset-size6.size7{font-size:1.2em}.katex .fontsize-ensurer.reset-size6.size8,.katex .sizing.reset-size6.size8{font-size:1.44em}.katex .fontsize-ensurer.reset-size6.size9,.katex .sizing.reset-size6.size9{font-size:1.728em}.katex .fontsize-ensurer.reset-size6.size10,.katex .sizing.reset-size6.size10{font-size:2.074em}.katex .fontsize-ensurer.reset-size6.size11,.katex .sizing.reset-size6.size11{font-size:2.488em}.katex .fontsize-ensurer.reset-size7.size1,.katex .sizing.reset-size7.size1{font-size:.41666667em}.katex .fontsize-ensurer.reset-size7.size2,.katex .sizing.reset-size7.size2{font-size:.5em}.katex .fontsize-ensurer.reset-size7.size3,.katex .sizing.reset-size7.size3{font-size:.58333333em}.katex .fontsize-ensurer.reset-size7.size4,.katex .sizing.reset-size7.size4{font-size:.66666667em}.katex .fontsize-ensurer.reset-size7.size5,.katex .sizing.reset-size7.size5{font-size:.75em}.katex .fontsize-ensurer.reset-size7.size6,.katex .sizing.reset-size7.size6{font-size:.83333333em}.katex .fontsize-ensurer.reset-size7.size7,.katex .sizing.reset-size7.size7{font-size:1em}.katex .fontsize-ensurer.reset-size7.size8,.katex .sizing.reset-size7.size8{font-size:1.2em}.katex .fontsize-ensurer.reset-size7.size9,.katex .sizing.reset-size7.size9{font-size:1.44em}.katex .fontsize-ensurer.reset-size7.size10,.katex .sizing.reset-size7.size10{font-size:1.72833333em}.katex .fontsize-ensurer.reset-size7.size11,.katex .sizing.reset-size7.size11{font-size:2.07333333em}.katex .fontsize-ensurer.reset-size8.size1,.katex .sizing.reset-size8.size1{font-size:.34722222em}.katex .fontsize-ensurer.reset-size8.size2,.katex .sizing.reset-size8.size2{font-size:.41666667em}.katex .fontsize-ensurer.reset-size8.size3,.katex .sizing.reset-size8.size3{font-size:.48611111em}.katex .fontsize-ensurer.reset-size8.size4,.katex .sizing.reset-size8.size4{font-size:.55555556em}.katex .fontsize-ensurer.reset-size8.size5,.katex .sizing.reset-size8.size5{font-size:.625em}.katex .fontsize-ensurer.reset-size8.size6,.katex .sizing.reset-size8.size6{font-size:.69444444em}.katex .fontsize-ensurer.reset-size8.size7,.katex .sizing.reset-size8.size7{font-size:.83333333em}.katex .fontsize-ensurer.reset-size8.size8,.katex .sizing.reset-size8.size8{font-size:1em}.katex .fontsize-ensurer.reset-size8.size9,.katex .sizing.reset-size8.size9{font-size:1.2em}.katex .fontsize-ensurer.reset-size8.size10,.katex .sizing.reset-size8.size10{font-size:1.44027778em}.katex .fontsize-ensurer.reset-size8.size11,.katex .sizing.reset-size8.size11{font-size:1.72777778em}.katex .fontsize-ensurer.reset-size9.size1,.katex .sizing.reset-size9.size1{font-size:.28935185em}.katex .fontsize-ensurer.reset-size9.size2,.katex .sizing.reset-size9.size2{font-size:.34722222em}.katex .fontsize-ensurer.reset-size9.size3,.katex .sizing.reset-size9.size3{font-size:.40509259em}.katex .fontsize-ensurer.reset-size9.size4,.katex .sizing.reset-size9.size4{font-size:.46296296em}.katex .fontsize-ensurer.reset-size9.size5,.katex .sizing.reset-size9.size5{font-size:.52083333em}.katex .fontsize-ensurer.reset-size9.size6,.katex .sizing.reset-size9.size6{font-size:.5787037em}.katex .fontsize-ensurer.reset-size9.size7,.katex .sizing.reset-size9.size7{font-size:.69444444em}.katex .fontsize-ensurer.reset-size9.size8,.katex .sizing.reset-size9.size8{font-size:.83333333em}.katex .fontsize-ensurer.reset-size9.size9,.katex .sizing.reset-size9.size9{font-size:1em}.katex .fontsize-ensurer.reset-size9.size10,.katex .sizing.reset-size9.size10{font-size:1.20023148em}.katex .fontsize-ensurer.reset-size9.size11,.katex .sizing.reset-size9.size11{font-size:1.43981481em}.katex .fontsize-ensurer.reset-size10.size1,.katex .sizing.reset-size10.size1{font-size:.24108004em}.katex .fontsize-ensurer.reset-size10.size2,.katex .sizing.reset-size10.size2{font-size:.28929605em}.katex .fontsize-ensurer.reset-size10.size3,.katex .sizing.reset-size10.size3{font-size:.33751205em}.katex .fontsize-ensurer.reset-size10.size4,.katex .sizing.reset-size10.size4{font-size:.38572806em}.katex .fontsize-ensurer.reset-size10.size5,.katex .sizing.reset-size10.size5{font-size:.43394407em}.katex .fontsize-ensurer.reset-size10.size6,.katex .sizing.reset-size10.size6{font-size:.48216008em}.katex .fontsize-ensurer.reset-size10.size7,.katex .sizing.reset-size10.size7{font-size:.57859209em}.katex .fontsize-ensurer.reset-size10.size8,.katex .sizing.reset-size10.size8{font-size:.69431051em}.katex .fontsize-ensurer.reset-size10.size9,.katex .sizing.reset-size10.size9{font-size:.83317261em}.katex .fontsize-ensurer.reset-size10.size10,.katex .sizing.reset-size10.size10{font-size:1em}.katex .fontsize-ensurer.reset-size10.size11,.katex .sizing.reset-size10.size11{font-size:1.19961427em}.katex .fontsize-ensurer.reset-size11.size1,.katex .sizing.reset-size11.size1{font-size:.20096463em}.katex .fontsize-ensurer.reset-size11.size2,.katex .sizing.reset-size11.size2{font-size:.24115756em}.katex .fontsize-ensurer.reset-size11.size3,.katex .sizing.reset-size11.size3{font-size:.28135048em}.katex .fontsize-ensurer.reset-size11.size4,.katex .sizing.reset-size11.size4{font-size:.32154341em}.katex .fontsize-ensurer.reset-size11.size5,.katex .sizing.reset-size11.size5{font-size:.36173633em}.katex .fontsize-ensurer.reset-size11.size6,.katex .sizing.reset-size11.size6{font-size:.40192926em}.katex .fontsize-ensurer.reset-size11.size7,.katex .sizing.reset-size11.size7{font-size:.48231511em}.katex .fontsize-ensurer.reset-size11.size8,.katex .sizing.reset-size11.size8{font-size:.57877814em}.katex .fontsize-ensurer.reset-size11.size9,.katex .sizing.reset-size11.size9{font-size:.69453376em}.katex .fontsize-ensurer.reset-size11.size10,.katex .sizing.reset-size11.size10{font-size:.83360129em}.katex .fontsize-ensurer.reset-size11.size11,.katex .sizing.reset-size11.size11{font-size:1em}.katex .delimsizing.size1{font-family:KaTeX_Size1}.katex .delimsizing.size2{font-family:KaTeX_Size2}.katex .delimsizing.size3{font-family:KaTeX_Size3}.katex .delimsizing.size4{font-family:KaTeX_Size4}.katex .delimsizing.mult .delim-size1>span{font-family:KaTeX_Size1}.katex .delimsizing.mult .delim-size4>span{font-family:KaTeX_Size4}.katex .nulldelimiter{display:inline-block;width:.12em}.katex .delimcenter,.katex .op-symbol{position:relative}.katex .op-symbol.small-op{font-family:KaTeX_Size1}.katex .op-symbol.large-op{font-family:KaTeX_Size2}.katex .accent>.vlist-t,.katex .op-limits>.vlist-t{text-align:center}.katex .accent .accent-body{position:relative}.katex .accent .accent-body:not(.accent-full){width:0}.katex .overlay{display:block}.katex .mtable .vertical-separator{display:inline-block;min-width:1px}.katex .mtable .arraycolsep{display:inline-block}.katex .mtable .col-align-c>.vlist-t{text-align:center}.katex .mtable .col-align-l>.vlist-t{text-align:left}.katex .mtable .col-align-r>.vlist-t{text-align:right}.katex .svg-align{text-align:left}.katex svg{fill:currentColor;stroke:currentColor;fill-rule:nonzero;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:block;height:inherit;position:absolute;width:100%}.katex svg path{stroke:none}.katex img{border-style:none;max-height:none;max-width:none;min-height:0;min-width:0}.katex .stretchy{display:block;overflow:hidden;position:relative;width:100%}.katex .stretchy:after,.katex .stretchy:before{content:""}.katex .hide-tail{overflow:hidden;position:relative;width:100%}.katex .halfarrow-left{left:0;overflow:hidden;position:absolute;width:50.2%}.katex .halfarrow-right{overflow:hidden;position:absolute;right:0;width:50.2%}.katex .brace-left{left:0;overflow:hidden;position:absolute;width:25.1%}.katex .brace-center{left:25%;overflow:hidden;position:absolute;width:50%}.katex .brace-right{overflow:hidden;position:absolute;right:0;width:25.1%}.katex .x-arrow-pad{padding:0 .5em}.katex .cd-arrow-pad{padding:0 .55556em 0 .27778em}.katex .mover,.katex .munder,.katex .x-arrow{text-align:center}.katex .boxpad{padding:0 .3em}.katex .fbox,.katex .fcolorbox{border:.04em solid;box-sizing:border-box}.katex .cancel-pad{padding:0 .2em}.katex .cancel-lap{margin-left:-.2em;margin-right:-.2em}.katex .sout{border-bottom-style:solid;border-bottom-width:.08em}.katex .angl{border-right:.049em solid;border-top:.049em solid;box-sizing:border-box;margin-right:.03889em}.katex .anglpad{padding:0 .03889em}.katex .eqn-num:before{content:"(" counter(katexEqnNo) ")";counter-increment:katexEqnNo}.katex .mml-eqn-num:before{content:"(" counter(mmlEqnNo) ")";counter-increment:mmlEqnNo}.katex .mtr-glue{width:50%}.katex .cd-vert-arrow{display:inline-block;position:relative}.katex .cd-label-left{display:inline-block;position:absolute;right:calc(50% + .3em);text-align:left}.katex .cd-label-right{display:inline-block;left:calc(50% + .3em);position:absolute;text-align:right}.katex-display{display:block;margin:1em 0;text-align:center}.katex-display>.katex{display:block;text-align:center;white-space:nowrap}.katex-display>.katex>.katex-html{display:block;position:relative}.katex-display>.katex>.katex-html>.tag{position:absolute;right:0}.katex-display.leqno>.katex>.katex-html>.tag{left:0;right:auto}.katex-display.fleqn>.katex{padding-left:2em;text-align:left}body{counter-reset:katexEqnNo mmlEqnNo}
+
+</style>
+
+</head>
+<body>
+    <div class="content-wrapper">
+        <h2 id="%E5%85%AB%E8%82%A1" tabindex="-1">八股</h2>
+<h3 id="linux-%E5%91%BD%E4%BB%A4" tabindex="-1">Linux 命令</h3>
+<ul>
+<li>cpu 使用情况查询 <code>top</code></li>
+<li>打印进程中所有线程 <code>ps H -eo pid, tid , %cpu | grep pid</code>
+<ul>
+<li>-eo 后面跟着一系列的格式控制符</li>
+<li>H 显示进程数</li>
+</ul>
+</li>
+<li><code>jstat pid</code>查看进程中线程命令</li>
+<li><code>nohup</code>命令会忽略挂断信号，终端退出后仍然运行。</li>
+<li><code>&amp;</code>终端退出后仍然运行，参数启动的进程不会忽略挂断信号。</li>
+<li><code>nc</code>是读取写入 TCP、UDP 命令</li>
+<li><code>nc -l</code>监听特定端口</li>
+<li><code>netstat -tuln</code>t:tcp u:upd l：正在监听的端口号 n:显示数字地址和端口号，而不是尝试解析为名称</li>
+<li><code>lsof -i -n -P | grep LISTEN</code>
+<ul>
+<li>-i 列出网络连接</li>
+<li>-n 不解析服务名称</li>
+<li>-P 显示端口号</li>
+<li>grep LISTEN 过滤出正在监听的连接</li>
+</ul>
+</li>
+<li><code>lsof</code> 是一个列出打开文件的工具</li>
+</ul>
+<h3 id="java-%E5%9F%BA%E7%A1%80" tabindex="-1">Java 基础</h3>
+<h4 id="arraylist%EF%BC%88%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84%EF%BC%89" tabindex="-1">ArrayList（动态数组）</h4>
+<p>List&lt;&gt; list=new ArrayList&lt;&gt;();
+初始化：
+1、带初始化容量
+2、无参
+3、Collection</p>
+<ul>
+<li>添加
+list.add()</li>
+<li>扩容
+0-if（minc&lt;10?10:minc）-10
+容量不够？newc=oldc+0.5oldc；
+数组拷贝 Arrays.copyof()
+<img src="image/interview2/1712647154296.png" alt="1712647154296">
+aslist 受影响（不创建新的对象）
+toarray 不受影响（创建新对象）
+<img src="image/interview2/1712647659074.png" alt="1712647659074">
+<img src="image/interview2/1712647727942.png" alt="1712647727942"></li>
+</ul>
+<h4 id="hashmap" tabindex="-1">HashMap</h4>
+<p><code>HashMap</code> 是 Java 集合框架中的一个类，它实现了 <code>Map</code> 接口，并使用哈希表来存储键值对。</p>
+<ul>
+<li>当插入一个键值对时，<code>HashMap</code> 使用键（key）的 <code>hashCode()</code> 方法来计算一个哈希码。</li>
+<li>这个哈希码被用来确定键值对在哈希表中的存储位置（称为“桶”或“槽”）。</li>
+<li>如果两个键的哈希码相同（称为“哈希冲突”），<code>HashMap</code> 会使用链表或红黑树（在 Java 8 及更高版本中）来存储这些具有相同哈希码但不相等的键。</li>
+<li>查找、删除和更新操作都基于键的哈希码进行。</li>
+</ul>
+<h5 id="%E7%BA%A2%E9%BB%91%E6%A0%91" tabindex="-1">红黑树</h5>
+<p>是一种平衡二叉树。虽然平衡二叉树和红黑树在查询、插入和删除操作的时间复杂度上都是 O(log n)，但由<strong>于红黑树的平衡要求相对宽松，它在实际应用中通常能够展现出更高的性能</strong>，特别是在大量数据频繁插入和删除的场景下。
+<img src="image/interview2/1712647894156.png" alt="1712647894156">
+查找、添加、删除 O(logn)</p>
+<h5 id="%E6%95%A3%E5%88%97%E8%A1%A8" tabindex="-1">散列表</h5>
+<p>hash 冲突：拉链法
+添加：O（1）
+查找：</p>
+<ul>
+<li>单链表：最坏 O（n）</li>
+<li>红黑树：O（logn）：抵抗 dos 攻击</li>
+</ul>
+<p><img src="image/interview2/1712648744968.png" alt="1712648744968"></p>
+<h5 id="%E5%88%9D%E5%A7%8B%E5%8C%96" tabindex="-1">初始化</h5>
+<p><img src="image/interview2/1712649057497.png" alt="1712649057497">
+懒加载——初始化时才加载</p>
+<h5 id="put" tabindex="-1">put</h5>
+<p><img src="image/interview2/1712649809520.png" alt="1712649809520"></p>
+<p><img src="image/interview2/1712649603750.png" alt="1712649603750"></p>
+<h5 id="%E5%AF%BB%E5%9D%80%E7%AE%97%E6%B3%95" tabindex="-1">寻址算法</h5>
+<p>计算 hash，二次 hash，右移 16 位^（hash^hash&gt;&gt;&gt;16）分散，mod 数组长度。</p>
+<h4 id="%E5%85%B3%E9%94%AE%E5%AD%97" tabindex="-1">关键字</h4>
+<h5 id="static-%E5%92%8C-final-%E7%9A%84%E5%8C%BA%E5%88%AB" tabindex="-1">static 和 final 的区别</h5>
+<ul>
+<li>static 可以声明变量、方法和代码块，static 声明的变量是属于类的而不是属于实例的，在类加载时初始化，但是 static 声明的变量是可以修改的。</li>
+<li>final 用于声明不可变得类、变量、实体。用 final 修饰的变量等于常量赋值后不能修改。用 final 修饰的方法不能被子类重写。用 final 修饰的类不能被继承。</li>
+</ul>
+<h5 id="try-catch-finally%EF%BC%8C%E5%9C%A8%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8%E5%90%8E-finally-%E8%BF%98%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%90%97%EF%BC%9F%E5%9C%A8-try-%E4%B8%AD-return-0%EF%BC%8Cfinally-%E8%BF%98%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%90%97%EF%BC%9F" tabindex="-1">try-catch-finally，在捕获异常后 finally 还会执行吗？在 try 中 return 0，finally 还会执行吗？</h5>
+<ul>
+<li>try-catch-finally 用于捕获异常，<code>try</code> 用于包裹可能抛出异常的代码块。<code>catch</code> 用于捕获 <code>try</code> 块中抛出的异常，并提供相应的处理逻辑。<code>finally</code> 块中的代码无论是否抛出异常都会被执行，通常用于释放资源或执行清理操作。</li>
+<li>如果在 <code>try</code> 块中使用 <code>return</code> 语句，那么 <code>finally</code> 块仍然会被执行。</li>
+</ul>
+<h5 id="integer%E3%80%81new-integer%E3%80%81integer.valueof()%E5%92%8C-int-%E7%9A%84%E5%8C%BA%E5%88%AB" tabindex="-1">Integer、new Integer、Integer.ValueOf()和 int 的区别</h5>
+<pre class='hljs'><code><div>
+   Integer fir=1;
+   Integer snd=new Integer(1);
+   System.out.println(fir==snd);//false
+   Systemout.println(fir==new Integer(1));//false两个对象比较用==永远是false
+   System.out.println(fir==Integer.valueof(1));//ture因为&lt;127valueof()直接读取缓存中的职位1的对象
+   Integer end=256;
+   System.out.println(end==Integer.valueof(256));//false因为&gt;127
+</div></code></pre>
+<ul>
+<li><strong>两个 new Integer() 变量比较 ，永远是 false</strong> 因为 new 生成的是两个对象，其内存地址不同</li>
+<li>Integer 变量 和 new Integer()变量比较 ，永远为 false。因为 Integer 变量指向的是 java 常量池中的对象， <strong>而 new Integer() 的变量指向堆中新建的对象</strong>，两者在内存中的地址不同。</li>
+<li>Integer i = 100 在编译时，会翻译成为 Integer i = Integer.valueOf(100)。<strong>java 对于-128 到 127 之间的数，会进行缓存</strong>。所以 Integer i = 127 时，会将 127 进行缓存，下次再写 Integer j = 127 时，就会直接从缓存中取，就不会 new 了。</li>
+<li><strong>两个 Integer 变量</strong>比较，如果<strong>两个变量的值在区间-128 到 127 之间</strong>，则比较结果为 true，如果两个变量的值不在此区间，则比较结果为 false 。</li>
+<li><strong>int 变量 与 Integer、 new Integer() 比较时，只要两个的值是相等</strong>，则为 true 因为包装类 Integer 和 基本数据类型 int 比较时，java 会自动拆包装为 int ，然后进行比较，实际上就变为两个 int 变量的比较。</li>
+</ul>
+<h5 id="int-%E5%92%8C-integer-%E5%8C%BA%E5%88%AB" tabindex="-1">int 和 Integer 区别</h5>
+<ul>
+<li>int:
+<ul>
+<li>基本数据类型</li>
+<li>存储在栈中，不需要来及回收</li>
+<li>可以用==进行比较</li>
+</ul>
+</li>
+<li>Integer
+<ul>
+<li>类对象</li>
+<li>存储在堆中，需要垃圾回收</li>
+<li>常量池：Java 为 <code>Integer</code> 类型的值在 -128 到 127 之间的对象创建了一个常量池。当你创建这些范围内的 <code>Integer</code> 对象时，Java 会从常量池中返回已存在的对象引用，而不是创建一个新的对象。（比如使用自动拆装箱和 valueOf（）方法）</li>
+<li>用 equal（）进行比较</li>
+</ul>
+</li>
+</ul>
+<h5 id="equal%EF%BC%88%EF%BC%89%E5%92%8C%3D%3D%E7%9A%84%E5%8C%BA%E5%88%AB" tabindex="-1">equal（）和==的区别</h5>
+<ul>
+<li>equal（）比较了两个对象的内容是否相同。</li>
+<li>== 运算符：==用来比较两个对象的地址是否相等。对于基本数据类型（如 int, char, boolean 等），== 用于比较它们的值是否相等。</li>
+</ul>
+<pre class='hljs'><code><div>String str1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;hello&quot;</span>);
+String str2 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;hello&quot;</span>);
+System.out.println(str1 == str2); <span class="hljs-comment">// 输出 false，因为 str1 和 str2 指向不同的对象</span>
+
+String str3 = <span class="hljs-string">&quot;hello&quot;</span>;
+String str4 = <span class="hljs-string">&quot;hello&quot;</span>;
+System.out.println(str3 == str4); <span class="hljs-comment">// 输出 true，因为 str3 和 str4 指向字符串常量池中的同一个对象</span>
+
+</div></code></pre>
+<h5 id="hashcode%EF%BC%88%EF%BC%89%E5%92%8C-hashmap-%E7%9A%84%E5%8C%BA%E5%88%AB" tabindex="-1">Hashcode（）和 Hashmap 的区别</h5>
+<ul>
+<li>HashMap 是一个类，它使用哈希表数据结构来存储键值对，并提供了高效的插入、查找和删除操作。hashMap 判断一个对象是否相等，<strong>首先通过比较对象的 hashcode 值</strong>是否相同，若是相同，<strong>再比较 equals 是否相同</strong>，若是不同，则可判定两个对象为不同的对象。<code>hashCode()</code> 方法是 <code>HashMap</code> 确定键值对在哈希表中存储位置的关键。</li>
+<li>hashCode() 方法返回一个整数，这个整数被称为“哈希码”。这个哈希码是根据对象的内存地址或其他属性计算得出的。</li>
+</ul>
+<h3 id="jvm" tabindex="-1">JVM</h3>
+<h4 id="jvm-%E7%BB%84%E6%88%90" tabindex="-1">JVM 组成</h4>
+<p><img src="image/interview2/1711802211770.png" alt="1711802211770"></p>
+<h4 id="%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8" tabindex="-1">类加载器</h4>
+<p><img src="image/interview2/1711802962393.png" alt="1711802962393"></p>
+<h4 id="gc" tabindex="-1">GC</h4>
+<p><img src="image/interview2/1711864728105.png" alt="1711864728105"></p>
+<p>频繁 fullGC：</p>
+<p>当老年代（Old Generation）空间满了，Java 虚拟机（JVM）就会触发 Full GC（Full Garbage Collection）。</p>
+<p>为了避免老年代空间满而频繁触发 Full GC，可以采取以下一些策略：</p>
+<ol>
+<li><strong>优化内存分配</strong> ：通过调整新生代和老年代的大小比例，使内存分配更加合理。</li>
+<li><strong>减少大对象的创建</strong> ：大对象会直接进入老年代，过多的大对象会快速填满老年代空间。（大对象直接进入老年代是因为它们在新生代没有足够的空间来存储）</li>
+<li><strong>避免内存泄漏</strong> ：内存泄漏会导致老年代空间被无效对象长期占用，无法释放。</li>
+<li><strong>使用对象池</strong> ：对于频繁创建和销毁的对象，可以使用对象池来复用对象，减少垃圾回收的压力。</li>
+<li><strong>进行 GC 调优</strong> ：通过调整 JVM 的垃圾回收算法、触发条件等参数来优化 GC 的性能。</li>
+<li><strong>使用性能监控工具</strong> ：监控和分析 GC 日志，了解 GC 的频率、时间和原因，以便进行相应的优化。</li>
+</ol>
+<h4 id="jvm-%E8%B0%83%E4%BC%98" tabindex="-1">JVM 调优</h4>
+<p><img src="image/interview2/1711864939744.png" alt="1711864939744">
+<img src="image/interview2/1711864911270.png" alt="1711864911270"></p>
+<h5 id="%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0" tabindex="-1">重要参数</h5>
+<h6 id="%E5%A0%86%E7%A9%BA%E9%97%B4" tabindex="-1">堆空间</h6>
+<p><strong>-Xms</strong>：初始化大小
+<strong>-Xmx</strong>：最大大小</p>
+<h6 id="%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88" tabindex="-1">虚拟机栈</h6>
+<p><strong>-Xss</strong>：每个线程栈的大小-256K</p>
+<h6 id="enden-%E5%92%8C-survivor" tabindex="-1">enden 和 survivor</h6>
+<p><strong>-XXSurvivorRatio</strong>=8//Survivor 占 8/10
+<strong>-XX:MaxTenuringThreshold</strong>=15//年轻代升老年代的复制阈值</p>
+<h6 id="%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8" tabindex="-1">垃圾回收器</h6>
+<p><strong>-XX:</strong>+UserG1GC</p>
+<h5 id="%E8%B0%83%E4%BC%98%E5%B7%A5%E5%85%B7" tabindex="-1">调优工具</h5>
+<p><img src="image/interview2/image.png" alt="alt text">
+<code>jstat pid</code>查看进程中线程命令</p>
+<h4 id="%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%EF%BC%88%E5%A0%86%EF%BC%89" tabindex="-1">内存泄露（堆）</h4>
+<p>排查思路：（大对象没有被回收）</p>
+<ol>
+<li>dump 内存快照（jmap）</li>
+<li>参数生成 dump
+<img src="image/interview2/1711866047699.png" alt="1711866047699"></li>
+</ol>
+<h4 id="cpu-%E9%A3%99%E9%AB%98" tabindex="-1">cpu 飙高</h4>
+<ul>
+<li>cpu 使用情况查询 <code>top</code></li>
+<li>打印进程中所有线程 <code>ps H -eo pid, tid , %cpu | grep pid</code></li>
+<li><code>jstat pid</code>查看进程中线程命令</li>
+</ul>
+<h3 id="%E5%A4%9A%E7%BA%BF%E7%A8%8B" tabindex="-1">多线程</h3>
+<h4 id="%E7%BA%BF%E7%A8%8B" tabindex="-1">线程</h4>
+<ul>
+<li>线程和进程的区别：</li>
+</ul>
+<p>1、进程是资源分配的最小单位、线程是不拥有资源（I/O 设备）是 cpu 独立调度的最小单位。进程中有多个线程</p>
+<p>2、进程独立拥有内存，一个进程中的多个线程共享进程的堆和方法区</p>
+<p>3、线程切换上下文的效率更高</p>
+<ul>
+<li>
+<p>创建线程</p>
+<ol>
+<li>继承 Thread</li>
+<li>实现 Runable 接口，包装在 Thread 中，没有返回值</li>
+<li>实现 Callable 接口，有返回值，可以抛异常，配合 Futuretask 类，将 FutureTask 包装在 Thread 中
+<img src="image/interview/1713947049440.png" alt="1713947049440"></li>
+</ol>
+</li>
+<li>
+<p>同步执行</p>
+<ol>
+<li>join（t1）：等待 t1 线程执行结束</li>
+<li>notify():随机唤醒一个线程</li>
+<li>notifyALL():唤醒所有线程</li>
+<li>wait()VSsleep():
+<img src="image/interview/1713947661831.png" alt="1713947661831"></li>
+</ol>
+</li>
+<li>
+<p>锁</p>
+<ol>
+<li>Synchronized
+<img src="image/interview/1713947921231.png" alt="1713947921231"></li>
+<li>Lock</li>
+<li>Synchronized VS Lock
+<ol>
+<li>释放</li>
+<li>悲观锁</li>
+<li>打断、超时、公平锁
+<img src="image/interview/1713948404137.png" alt="1713948404137"></li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="%E7%BA%BF%E7%A8%8B%E6%B1%A0" tabindex="-1">线程池</h4>
+<p>工作流程
+<img src="image/interview/1713943665968.png" alt="1713943665968"></p>
+<p>实现：线程池</p>
+<h5 id="%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0-1" tabindex="-1">重要参数</h5>
+<ul>
+<li>
+<p>核心线程数</p>
+</li>
+<li>
+<p>最大线程数</p>
+</li>
+<li>
+<p>线程空闲时间：当线程池中的线程数超过核心线程数时，多余的空闲线程在此参数指定的时间内如果没有接收到新的任务，则会被销毁。</p>
+</li>
+<li>
+<p>时间单位</p>
+</li>
+<li>
+<p>工作队列：先进先出、优先级</p>
+<p><img src="image/interview/1713944162337.png" alt="1713944162337"></p>
+</li>
+<li>
+<p>拒绝策略：直接丢弃</p>
+</li>
+</ul>
+<h6 id="%E5%8F%82%E6%95%B0%E9%80%89%E6%8B%A9" tabindex="-1">参数选择</h6>
+<p>1、任务类型：获取商品详情可能是 IO 密集型任务。2*n+1（n 是 cpu 核数）
+2、资源限制：我们的服务器有 8 个 CPU 核心，并且有足够的内存和 IO 资源。因此，我们可以将最大线程数量设置为 CPU 核心数的 2-4 倍。
+3、响应时间要求：决定核心线程数
+4、负载预测：增加核心线程数量来应对高峰负载。</p>
+<h6 id="%E7%B1%BB%E5%9E%8B" tabindex="-1">类型</h6>
+<p>静态：固定最大（核心）线程数</p>
+<p>单线程：最大（核心）线程数为 1</p>
+<p>可缓存：</p>
+<p><img src="image/interview/1713944622846.png" alt="1713944622846"></p>
+<p><strong>不适用 Executors 创建线程池，因为 Executors 创建线程池的队列长度为 Integer.MAX_VALUE，容易堆积请求。而是使用 new 一个 ThreadPoolExecutor 对象来创建线程池</strong></p>
+<h6 id="%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF" tabindex="-1">使用场景</h6>
+<p>异步加载商品详情页面</p>
+<p><img src="image/interview/1713945280400.png" alt="1713945280400"></p>
+<h6 id="treadlocal" tabindex="-1">TreadLocal</h6>
+<p><img src="image/interview/1713945761061.png" alt="1713945761061"></p>
+<p><img src="image/interview/1713946135653.png" alt="1713946135653"></p>
+<p><img src="image/interview/1716181241271.png" alt="1716181241271"></p>
+<h5 id="%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9A" tabindex="-1">安全问题：</h5>
+<h6 id="%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%9A" tabindex="-1">线程安全性：</h6>
+<p>多线程环境下存在线程安全性问题，需要确保共享资源的访问是线程安全的，避免出现竞态条件和数据一致性问题。可以通过加锁、使用线程安全的数据结构等方式来保证线程安全性。</p>
+<p>1、加锁：sychonized、Lock</p>
+<p>2、线程安全数据结构和集合：ConcurrentHashMap、CopyOnWriteArrayList</p>
+<p>3、原子操作：原子操作类：AtomicInteger、AtomicLong</p>
+<h6 id="%E6%AD%BB%E9%94%81%E5%92%8C%E9%A5%A5%E9%A5%BF%EF%BC%9A" tabindex="-1">死锁和饥饿：</h6>
+<p>在多线程编程中，存在死锁和饥饿的风险。死锁指的是两个或多个线程相互等待对方持有的资源，导致程序无法继续执行；饥饿指的是某个线程长时间无法获取到所需的资源，无法执行任务。需要设计合理的锁定策略和资源分配策略，避免死锁和饥饿的发生。</p>
+<p>1、加锁顺序：确保所有线程都按照相同的顺序获取锁，从而避免死锁的发生。</p>
+<p>2、避免嵌套锁：避免持有锁的时候去请求锁</p>
+<p>3、资源分配策略：确保资源能够及时释放和回收，避免资源被长时间占用</p>
+<p>4、超时策略：长时间不获得资源就放弃重试</p>
+<h6 id="%E9%94%81" tabindex="-1">锁</h6>
+<p><code>synchronized</code> 和 <code>Lock</code> 在 Java 中都用于实现同步机制，但它们在多个方面存在一些区别。以下是它们之间的一些主要差异：</p>
+<ol>
+<li><strong>存在层次</strong> ：</li>
+</ol>
+<ul>
+<li><code>synchronized</code> 是 Java 的一个关键字，它在 JVM 层面上由内置语言实现。</li>
+<li><code>Lock</code> 是一个接口，以及相关的实现类（如 <code>ReentrantLock</code>），在 Java SE 5 之后的并发包中被引入，用于实现锁功能。</li>
+</ul>
+<ol start="2">
+<li><strong>锁的获取与释放</strong> ：</li>
+</ol>
+<ul>
+<li>使用 <code>synchronized</code> 关键字时，锁的获取和释放是隐式的。当线程进入 <code>synchronized</code> 代码块或方法时，它会自动获取锁；当线程退出 <code>synchronized</code> 代码块或方法时，锁会自动释放。</li>
+<li>使用 <code>Lock</code> 接口时，锁的获取和释放是显式的。线程需要调用 <code>lock()</code> 方法来获取锁，并在适当的时候调用 <code>unlock()</code> 方法来释放锁。</li>
+</ul>
+<ol start="3">
+<li><strong>锁的类型</strong>
+synchronized 提供的是<strong>非中断锁</strong>（必须等待线程执行完成释放锁）、<strong>不可判断</strong>（无法直接判断锁是否被持有）和非公平锁（等待的线程获取锁的顺序是不确定的）。
+Lock 接口提供的锁可以是<strong>可中断的</strong>（允许等待锁的线程在等待过程中被中断）、<strong>可判断的</strong>（可以通过方法判断锁是否被持有）和<strong>公平的</strong>（等待的线程按照请求锁的顺序获取锁）。</li>
+</ol>
+<h3 id="mysql" tabindex="-1">MySQL</h3>
+<h4 id="sql-%E8%AF%AD%E5%8F%A5" tabindex="-1">SQL 语句</h4>
+<h5 id="%E8%A7%86%E5%9B%BE" tabindex="-1">视图</h5>
+<p>就是一个窗口，可以连表查询</p>
+<pre class='hljs'><code><div>create view
+as select
+from
+where
+with check option
+</div></code></pre>
+<p><code>AS SELECT</code> 通常与 <code>CREATE VIEW</code> 或 <code>CREATE TABLE</code> 语句一起使用，用于定义新视图或表的结构和内容。在这种情况下，<code>AS SELECT</code> 后面的查询定义了新视图或表的数据和列。</p>
+<h5 id="inner-join-%E5%92%8C-outer-join-%E7%9A%84%E5%8C%BA%E5%88%AB" tabindex="-1">inner join 和 outer join 的区别</h5>
+<ul>
+<li>都用于连表查询。</li>
+<li>inner join 时内联，用于选择两个表中满足条件的交集的部分，如果不满足条件则不返回。</li>
+<li>Outer Join 返回连接两个表后的所有记录，无论连接条件是否匹配。如果在连接条件上没有匹配的记录，则会生成一个包含 NULL 值的虚拟记录。</li>
+<li>left join，显示左边表中所有的数据，当右边的字段不满足条件时以 null 填充。left join、右外连接（Right Outer Join）和全外连接（Full Outer Join）三种形式，它们分别表示在连接过程中保留左表、右表或者两个表中的所有记录。</li>
+</ul>
+<h5 id="union" tabindex="-1">UNION</h5>
+<ul>
+<li>union 会自动去除结果集中的重复行。</li>
+</ul>
+<h5 id="having" tabindex="-1">HAVING</h5>
+<p>having 子句用于对 GROUP BY 的结果进行过滤。与 WHERE 子句不同，WHERE 在数据分组之前进行过滤，而 HAVING 在数据分组之后进行过滤。HAVING 通常与聚合函数一起使用。</p>
+<p>它们的执行顺序是：WHERE -&gt; GROUP BY -&gt; HAVING -&gt; SELECT -&gt; ORDER BY</p>
+<h5 id="%E9%A1%BA%E5%BA%8F" tabindex="-1">顺序</h5>
+<p><code>SELECT</code> 指定了要从表中检索哪些列。
+<code>FROM</code> 指定了包含所需数据的表。
+<code>WHERE</code> 用于过滤记录，即只选择满足特定条件的记录。
+<code>GROUP BY</code> 用于将结果集按一个或多个列进行分组。
+<code>HAVING</code> 用于过滤分组后的结果，通常与聚合函数一起使用。
+<code>ORDER BY</code> 用于对结果集进行排序。</p>
+<h5 id="sql-%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB" tabindex="-1">SQL 注入攻击</h5>
+<p>没有正确对用户输入进行过滤和转义，攻击者可以通过输入恶意的 SQL 代码来执行非授权的数据库操作。</p>
+<p>MyBatisPlus 可以防止 SQL 注入攻击因为：</p>
+<ol>
+<li>通过#{}接收参数，通过用户输入查询</li>
+<li>封装了 Mapper 层和 service 层，自动参数化查询</li>
+<li>可以配置 SQL 注入过滤器</li>
+</ol>
+<h4 id="%E6%B5%81%E7%A8%8B" tabindex="-1">流程</h4>
+<p><img src="image/interview2/1710500497644.png" alt="1710500497644"></p>
+<h4 id="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" tabindex="-1">数据结构</h4>
+<p><img src="image/interview2/1710500523086.png" alt="1710500523086"></p>
+<h4 id="%E6%97%A5%E5%BF%97" tabindex="-1">日志</h4>
+<p><img src="image/interview2/1710500030301.png" alt="1710500030301"></p>
+<ul>
+<li>redo log：redo log 是循环写</li>
+<li>bin log：追加写</li>
+</ul>
+<h4 id="%E5%91%BD%E4%BB%A4" tabindex="-1">命令</h4>
+<pre class='hljs'><code><div>
+-- 创建表
+CREATE TABLE account (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(10),
+	balance DOUBLE
+);
+-- 添加数据
+INSERT INTO account (NAME, balance) VALUES ('zhangsan', 1000), ('lisi', 1000);
+
+UPDATE account SET balance = 1000;
+SELECT * FROM account;
+-- 0. 开启事务
+START TRANSACTION;
+-- 1. 张三账户 -500
+UPDATE account SET balance = balance - 500 WHERE NAME = 'zhangsan';
+-- 2. 李四账户 +500
+-- 出错了...
+UPDATE account SET balance = balance + 500 WHERE NAME = 'lisi';
+
+-- 发现执行没有问题，提交事务
+COMMIT;
+
+-- 发现出问题了，回滚事务
+ROLLBACK;
+</div></code></pre>
+<h4 id="%E9%94%81-1" tabindex="-1">锁</h4>
+<p><img src="image/interview/1715058280496.png" alt="1715058280496"></p>
+<ul>
+<li>
+<p>**全局锁：**整个数据库就处于只读状态了</p>
+</li>
+<li>
+<p><strong>表级锁：</strong> MySQL 中锁定粒度最大的一种锁（全局锁除外），是针对非索引字段加的锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。不过，触发锁冲突的概率最高，高并发下效率极低。表级锁和存储引擎无关，MyISAM 和 InnoDB 引擎都支持表级锁。</p>
+<ul>
+<li>读锁</li>
+<li>写锁：读读共享、读写互斥、写写互斥（如果 where 中的条件没有命中索引，则升级为表锁）</li>
+<li>元数据锁：MDL 锁主要用于保护数据库对象的元数据不被并发事务修改。</li>
+<li>意向锁：<strong>意向锁的目的是为了快速判断表里是否有记录被加锁</strong>。在 InnoDB 中，当事务想要对表中的某个行加锁时，它首先需要在表上设置相应的意向锁。</li>
+</ul>
+</li>
+<li>
+<p><strong>行级锁：</strong> MySQL 中锁定粒度最小的一种锁，是 <strong>针对索引字段加的锁</strong> ，只针对当前操作的行记录进行加锁。 行级锁能大大减少数据库操作的冲突。其加锁粒度最小，并发度高，但加锁的开销也最大，加锁慢，会出现死锁。行级锁和存储引擎有关，是在存储引擎层面实现的。</p>
+<ul>
+<li>记录锁：读锁 <code>select for update</code>和写锁 <code>SELECT ... LOCK IN SHARE MODE</code>，读读共享、读写互斥、写写互斥</li>
+<li>间隙锁：锁住一个范围，防止幻读，开区间。<strong>间隙锁之间是兼容的，即两个事务可以同时持有包含共同间隙范围的间隙锁</strong></li>
+<li>临键锁：锁住一个范围包括记录本身。<strong>包含间隙锁+记录锁</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="%E7%B4%A2%E5%BC%95" tabindex="-1">索引</h4>
+<p>索引是一种数据库的数据结构，在查找数据的时候可以通过对比索引来快速的找到数据，而不是扫描每个数据。</p>
+<p>在 MySQL 中常用的索引结构有 B+树。</p>
+<ul>
+<li>b+树 VS 二叉树：平衡的多叉树，相比二叉树 B+树的层高低，IO 次数少。</li>
+<li>B+树 VS B 树：分支索引、叶子节点存数据，一个节点能容纳的索性项多，IO 次数少。叶子节点通过双向链表连接，方便顺序查找、扫库。</li>
+</ul>
+<p>索引字段分类</p>
+<ul>
+<li>聚簇索引主要是指数据与索引放到一块，叶子节点中有完整的数据行</li>
+<li>非聚簇索引主要是指数据与索引不放到一块，叶子节点中一般存放数据行的主键，可能需要回表查询。</li>
+</ul>
+<p>查找效率</p>
+<ul>
+<li>覆盖索引：返回的列，必须在索引中全部能够找到</li>
+</ul>
+<p>索引原则</p>
+<ul>
+<li>数据量大</li>
+<li><code>where</code>索引的字段是查询比较频繁的字段</li>
+<li>经常用于 GROUP BY 和 ORDER BY 的字段，这样在查询的时候就不需要再去做一次排序了，因为我们都已经知道了建立索引之后在 B+Tree 中的记录都是排序好的</li>
+<li>不常更新的表</li>
+</ul>
+<p>索引失效</p>
+<ul>
+<li>模糊查询 <code>like</code></li>
+<li>联合索引在使用的时候没有遵循最左匹配法则</li>
+<li>在添加索引的字段上进行了运算操作</li>
+<li>explain 执行计划分析索引是否失效</li>
+</ul>
+<p>sql 优化</p>
+<ul>
+<li>
+<p>建表的时候</p>
+<ul>
+<li>数据类型
+<ul>
+<li>如果是数值的话，bigint 存 id，用 varchar 存用户名，用 char（64）存订单编号。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>使用索引</p>
+<ul>
+<li>订单表中：按照订单创建时间或者更新时间进行查询，可以为时间戳字段创建一个索引。</li>
+<li>订单表中：如果订单经常根据用户进行查询，可以为用户 ID 创建一个索引。</li>
+<li>订单表中：订单编号创建一个唯一索引</li>
+</ul>
+</li>
+<li>
+<p>sql 语句的编写：</p>
+<ul>
+<li>比如 SELECT 语句务必指明字段名称，不要直接使用 select * ，</li>
+<li>还有就是要注意 SQL 语句避免造成索引失效的写法；</li>
+<li>如果是聚合查询，尽量用 union all 代替 union ，union 会多一次过滤，效率比较低</li>
+<li>如果是表关联的话，尽量使用 innerjoin ，不要使用用 left join right join，如
+必须使用一定要以小表为驱动</li>
+</ul>
+</li>
+<li>
+<p>主从复制</p>
+</li>
+<li>
+<p>读写分离</p>
+</li>
+<li>
+<p>分库分表</p>
+</li>
+</ul>
+<h4 id="%E4%BA%8B%E5%8A%A1" tabindex="-1">事务</h4>
+<p>一组 sql 命令，具有一致性、原子性、隔离性、持久性。</p>
+<ul>
+<li>一致性：比如 A 给 B 转 50，A 的账户少 50，B 的账户就多 50.</li>
+<li>原子性：一组命令要么全执行、要么全不执行。通过 undo log 保证。</li>
+<li>隔离性：不受其他事务干扰 mvcc——<strong>隔离级别</strong></li>
+<li>持久性：数据要记录到磁盘中不能丢失。redo log</li>
+</ul>
+<p>并发</p>
+<ul>
+<li>脏读</li>
+<li>不可重复读</li>
+<li>幻读——解决：MVCC、锁</li>
+</ul>
+<p>解决——隔离级别</p>
+<ul>
+<li>读未提交</li>
+<li>读提交</li>
+<li>可重复读——read view</li>
+<li>串行化</li>
+</ul>
+<p>MVCC</p>
+<ul>
+<li>在数据库实现隔离级别，解决读写冲突，原理依赖 readview，和记录中的两个隐藏字段：对当前数据版本修改的事务 id 和指向旧版本的指针。</li>
+<li>ReadView 数据快照
+<ul>
+<li>读提交：是在<strong>每个语句执行前</strong>都会重新生成一个 Read View，</li>
+<li>「可重复读」：是<strong>启动事务时</strong>生成一个 Read View，然后整个事务期间都在用这个 Read View。</li>
+</ul>
+</li>
+<li>字段
+<img src="image/interview/1715049140516.jpg" alt="1715049140516"></li>
+</ul>
+<p>开启事务</p>
+<ul>
+<li><code>begin transaction</code></li>
+<li><code>start transaction</code></li>
+</ul>
+<p>提交事务 <code>COMMIT</code></p>
+<h4 id="mybatis" tabindex="-1">MyBatis</h4>
+<ul>
+<li>删除一条数据
+<ul>
+<li>定义 mapper 接口，包括一个用于删除数据的方法</li>
+<li>写 XML 文件 <code>&lt;delete&gt;</code>标签</li>
+<li>或者使用 MyBatis-plus 自定义一个 mapper 接口继承 BaseMapper，调用 basemapper 自带的 deleteById（）方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="redis" tabindex="-1">Redis</h3>
+<p>基于内存的数据库，采用了 <strong>I/O 多路复用机制</strong>处理大量的客户端 Socket 请求，读写快，可以用于做 MySQL 的缓存、分布式锁等等</p>
+<h4 id="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1" tabindex="-1">数据结构</h4>
+<ol>
+<li>String</li>
+<li>List</li>
+<li>Hash：</li>
+<li>Set：集合，聚合计算（并集、交集、差集）场景，比如点赞、共同关注、抽奖活动等。</li>
+<li>ZSet：有序集合,热销排行榜</li>
+</ol>
+<h4 id="%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98" tabindex="-1">缓存问题</h4>
+<p>容量有限，设置一个过期时间定期清理缓存。</p>
+<ul>
+<li>穿透：不存在
+<ul>
+<li><strong>使用布隆过滤器快速判断数据是否存在</strong></li>
+<li>设置空或者默认值</li>
+</ul>
+</li>
+<li>击穿：某条数据过期
+<ul>
+<li>互斥锁方案（Redis 中使用 setNX 方法设置一个状态位，表示这是一种锁定状态），保证同一时间只有一个业务线程请求缓存，未能获取互斥锁的请求，要么等待锁释放后重新读取缓存，要么就返回空值或者默认值。</li>
+<li>不给热点数据设置过期时间，由后台异步更新缓存，或者在热点数据准备要过期前，提前通知后台线程更新缓存以及重新设置过期时间；</li>
+</ul>
+</li>
+<li>雪崩：多条数据同时失效。——我们可以在原有的失效时间基础上增加一个随机值（比如 1 到 10 分钟）这样每个缓存的过期时间都不重复了</li>
+</ul>
+<p>布隆过滤器：是一种数据结构，用于快速判断一个元素是否可能在一个集合中存在。它的核心思想是使用一系列的哈希函数和一个位数组。当一个元素被加入到布隆过滤器时，会对该元素进行多次哈希，然后将对应的位数组位置设置为 1。当需要判断一个元素是否在布隆过滤器中时，同样对该元素进行多次哈希，然后检查对应的位数组位置是否都为 1，如果都为 1，则表示可能存在；如果有任何一位为 0，则表示该元素一定不存在。</p>
+<h4 id="redis-%E6%8C%81%E4%B9%85%E5%8C%96" tabindex="-1">redis 持久化</h4>
+<p><img src="image/interview/1715065495006.jpg" alt="1715065495006"></p>
+<h4 id="%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7" tabindex="-1">数据一致性</h4>
+<p><strong>先更新数据库，再删除缓存</strong></p>
+<ul>
+<li>问题：在删除缓存（第二个操作）的时候失败了，redis 中还是旧值</li>
+<li>解决：
+<ul>
+<li>引入消息队列，把要删除的缓存数据放到队列中，通过消息队列的确认机制，如果删除失败就重试。</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<p><strong>先删除缓存，再更新数据库</strong></p>
+<ul>
+<li>问题：「读 + 写」并发请求而造成缓存不一致</li>
+<li>解决办法：「 <strong>延迟双删</strong> 」。先更新数据库，再删除缓存</li>
+</ul>
+<h4 id="%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98" tabindex="-1">线程问题</h4>
+<p>redis 单线程指的是「接收客户端请求-&gt;解析请求 -&gt;进行数据读写等操作-&gt;发送数据给客户端」这个过程是由一个线程（主线程）来完成的 ，这也是我们常说 Redis 是单线程的原因。</p>
+<p>但是， <strong>Redis 程序并不是单线程的</strong> ，Redis 在启动的时候，是会 <strong>启动后台线程</strong> （BIO）来进行关闭文件、AOF 刷盘、重写、释放内存等耗时操作。</p>
+<h4 id="%E9%9B%86%E7%BE%A4" tabindex="-1">集群</h4>
+<p><a href="https://zhuanlan.zhihu.com/p/624144774">详解 Redis 三大集群模式，轻松实现高可用！ - 知乎 (zhihu.com)</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/391762630">Redis 集群的原理和搭建，一文带你详解 - 知乎 (zhihu.com)</a></p>
+<h3 id="rabbitmq" tabindex="-1">RabbitMQ</h3>
+<p>商品上下架</p>
+<p>生成订单——MQ——删除购物车</p>
+<p>支付完成——mQ——更新订单状态，扣减库存（异步、解耦、削峰）</p>
+<h4 id="%E6%B6%88%E6%81%AF%E7%9A%84%E7%AD%89%E5%B9%82%E6%80%A7" tabindex="-1">消息的等幂性</h4>
+<p>1、为每条消息分配一个全局唯一的 ID。<strong>在消费者端</strong>，维护一个已经处理过的消息 ID 的列表（或者存储在数据库中）。当接收到新消息时，首先检查其 ID 是否已存在于列表中。如果存在，则忽略该消息；如果不存在，则处理该消息并将其 ID 添加到列表中。</p>
+<p>2、等幂性的操作，比如增加数量是等幂性，而设置数量不是。</p>
+<p>3、去重表
+每一条消息在表中都有一个 uniqueid 吗？</p>
+<h4 id="%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1" tabindex="-1">消息不丢失</h4>
+<p><img src="image/interview/1715074444492.jpg" alt="1715074444492"></p>
+<h3 id="spring-%E6%A1%86%E6%9E%B6" tabindex="-1">Spring 框架</h3>
+<p>框架 = jar 包+配置文件</p>
+<p><img src="https://secure-bigfile.wostatic.cn/static/5D6E8yWCFE2pUa3koBp4ra/image.png?auth_key=1710406316-b3ZnzCKqSg74a9gX18Pyu8-0-b8a5e867c242189c5bb46f0a15e32ac5&amp;image_process=resize,w_715&amp;file_size=8793951" alt=""></p>
+<p><strong>组件</strong>是映射到应用程序中所有可重用组件的 Java 对象，应该是可复用的功能对象！</p>
+<h4 id="%E5%8F%8D%E5%B0%84" tabindex="-1">反射</h4>
+<p>Java 反射机制的原理是基于类的加载机制和字节码的解析。当 JVM 加载一个类时，会将类的信息存储在方法区内存中，包括类的结构信息和字节码。通过反射，可以通过类的名称获取到对应的 Class 对象，并通过 Class 对象来获取类的信息和操作类的成员。</p>
+<h4 id="ioc" tabindex="-1">Ioc</h4>
+<p>不再是应用程序直接创建该对象，而是由 IoC 容器来创建和管理，即控制权由应用程序转移到 IoC 容器中。这种方式基本上是通过<strong>依赖查找</strong>的方式来实现的，即 IoC 容器维护着构成应用程序的对象，并负责创建这些对象。</p>
+<p>优点：</p>
+<ol>
+<li>对象之间的耦合度或者说依赖程度降低；</li>
+<li>资源变的容易管理；比如你用 Spring 容器提供的话很容易就可以实现一个单例。</li>
+</ol>
+<h5 id="ioc-%E5%AE%B9%E5%99%A8" tabindex="-1">Ioc 容器</h5>
+<p>Spring IoC 容器，负责实例化、配置和组装 bean（组件）核心容器。容器通过读取配置元数据来获取有关要实例化、配置和组装组件的指令。</p>
+<p>BeanFactory 接口提供了一种高级配置机制，能够管理任何类型的对象，它是 SpringIoC 容器标准化超接口！</p>
+<ul>
+<li>工厂模式
+<ul>
+<li>抽象工厂：BeanFactory 接口（如 XmlBeanFactory、DefaultListableBeanFactory 等）</li>
+<li>具体工厂：BeanFactory 实现类</li>
+<li>产品：bean</li>
+</ul>
+</li>
+</ul>
+<p><code>ApplicationContext</code> （一个接口）是 <code>BeanFactory</code> 的子接口。它扩展了以下功能：</p>
+<p>可以通过 <code>ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</code>来创建一个 ioc 容器。</p>
+<ul>
+<li>更容易与 Spring 的 AOP 功能集成</li>
+<li>消息资源处理（用于国际化）</li>
+<li>特定于应用程序给予此接口实现，例如 Web 应用程序的 <code>WebApplicationContext</code></li>
+</ul>
+<h6 id="bean-%E6%B3%A8%E5%85%A5%E5%88%B0%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95" tabindex="-1">Bean 注入到容器中的方法</h6>
+<p>1、注解（@Component、@Service、@Autowired）
+2、写 xml 文件
+3、java@Configration 配置类中，用@Bean 注解标记的的对象。</p>
+<h6 id="%E7%AE%A1%E7%90%86%EF%BC%88%E8%8E%B7%E5%8F%96%EF%BC%89bean" tabindex="-1">管理（获取）Bean</h6>
+<ul>
+<li>根据提供的名称或类型信息，在内部缓存中查找对象。</li>
+<li>如果对象不存在，则根据配置信息创建对象实例。</li>
+<li>如果对象有依赖项，则递归地创建和注入这些依赖项。</li>
+<li>返回创建好的对象实例给调用者。</li>
+</ul>
+<h6 id="bean-%E5%AF%B9%E8%B1%A1%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F" tabindex="-1">Bean 对象生命周期</h6>
+<p><img src="image/interview/1713082682545.png" alt="1713082682545"></p>
+<ul>
+<li>通过 beanDefinition 获取 bean 的定义</li>
+<li>通过构造函数实例化 bean（开辟堆空间——半成品）</li>
+<li>bean 的依赖注入</li>
+<li>实现 Aware 接口，有些方法需要重写</li>
+<li>bean 的后置处理器-前置</li>
+<li>初始化方法</li>
+<li>bean 的后置处理器-后置（动态代理）</li>
+<li>销毁 bean</li>
+</ul>
+<h6 id="%E5%8D%95%E4%BE%8B-bean-%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F" tabindex="-1">单例 Bean 是线程安全的吗？</h6>
+<p>不是。
+Service 类和 DAO 类无状态（不能修改），没有线程安全问题
+如果在 bean 中定义可修改成员变量要考虑线程安全问题（多例，锁）</p>
+<h6 id="%E5%8D%95%E4%BE%8B-bean-%E7%9A%84%E4%BC%98%E7%82%B9" tabindex="-1">单例 bean 的优点</h6>
+<ol>
+<li><strong>减少了新生成实例的消耗</strong>。新生成实例消耗包括两方面，第一，spring 会通过反射或者 cglib 来生成 bean 实例这都是耗性能的操作，其次给对象分配内存也会涉及复杂算法。</li>
+<li><strong>减少 jvm 垃圾回收</strong></li>
+<li><strong>缓存快速获取</strong></li>
+<li>缺点： 由于所有请求都共享一个 bean 实例，所以这个 bean 要是有状态的一个 bean 的话可能在并发场景下出现问题</li>
+</ol>
+<h5 id="di" tabindex="-1">Di</h5>
+<p>在 Spring 中，DI 是通过 XML 配置文件或注解的方式实现的。它提供了三种形式的依赖注入：<strong>构造函数注入、Setter 方法注入和接口注入</strong>。</p>
+<p>1- xml 方式</p>
+<p>2- @Autowired：成员变量，构造函数。
+默认至少有一个 bean（serviceImpl？）
+bean 的 id 是成员属性名</p>
+<p><img src="image/interview2/1710472741544.png" alt="1710472741544"></p>
+<p>工作流程：</p>
+<p><img src="image/interview2/1710472076057.png" alt="1710472076057"></p>
+<h6 id="%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96" tabindex="-1">循环依赖</h6>
+<p>A 有一个属性 B，B 有一个属性 A,形成闭环</p>
+<p>解决： 1.使用 @Lazy 注解：在需要循环依赖的 Bean 上添加 <code>@Lazy</code> 注解，延迟加载 Bean，避免直接初始化导致循环依赖。需要对象是才进行 bean 的创建。
+<img src="image/interview/1713083811963.png" alt="1713083811963"> 2. 三级缓存
+<img src="image/interview/1713083878425.png" alt="1713083878425"> 3. 使用代理对象：Spring 会创建代理对象来解决循环依赖问题。对于循环依赖的 Bean，Spring 会提前暴露一个半初始化（half-initialized）的 Bean，并在后续步骤中完成 Bean 的初始化。</p>
+<h4 id="aop" tabindex="-1">AOP</h4>
+<ol>
+<li>AOP 一种区别于 OOP 的编程思维，通过封装可重用模块（切面）用来完善和解决 OOP 的<strong>非核心代码冗余</strong>和不方便统一维护问题！（日志、事务）</li>
+<li>**代理技术（动态代理|静态代理）**是实现 AOP 思维编程的具体技术，但是自己使用动态代理实现代码比较繁琐！</li>
+<li>Spring AOP 框架，基于 AOP 编程思维，封装动态代理技术，简化动态代理技术实现的框架！SpringAOP 内部帮助我们实现动态代理，我们只需写少量的配置，指定生效范围即可,即可完成面向切面思维编程的实现！</li>
+</ol>
+<h5 id="%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%EF%BC%9A" tabindex="-1">动态代理：</h5>
+<p>它允许在运行时创建一个代理对象，用于替代原始对象，并且可以在代理对象的方法调用前后进行额外的处理。</p>
+<ul>
+<li>实现：JDK 原生的实现方式，需要被代理的目标类必须实现接口。因为这个技术要求代理对象和目标对象实现同样的接口（兄弟两个拜把子模式）。</li>
+<li><strong>cglib:</strong></li>
+</ul>
+<p><img src="image/interview/1713085289959.png" alt="1713085289959"></p>
+<h5 id="%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%EF%BC%9A" tabindex="-1">事务实现：</h5>
+<p><img src="image/interview/1713089224952.png" alt="1713089224952"></p>
+<h4 id="%E4%BA%8B%E5%8A%A1-1" tabindex="-1">事务</h4>
+<ul>
+<li>事务失效的场景</li>
+</ul>
+<h4 id="springmvc-%E6%B5%81%E7%A8%8B" tabindex="-1">SpringMVC 流程</h4>
+<p>Spring MVC 使用 Servlet API（如 HttpServletRequest 和 HttpServletResponse）来处理 HTTP 请求和响应，但它在这些 API 之上添加了一个更高级别的抽象层，使开发者能够更容易地处理 Web 请求和构建 Web 页面。</p>
+<p><strong>视图阶段（JSP）</strong>
+前端控制器</p>
+<p>处理器映射器</p>
+<p>处理器适配器</p>
+<p>视图解析器</p>
+<p>渲染视图
+<strong>前后端分离</strong>
+前端控制器</p>
+<p>处理器映射器（拦截器）</p>
+<p>处理器适配器-处理器（controller 中的方法）</p>
+<p>方法上有@ResponseBody</p>
+<p>通过 HTTPMessageConverter 来返回 JSON 并响应</p>
+<p><img src="image/interview/1713085338585.png" alt="1713085338585"></p>
+<h3 id="springboot" tabindex="-1">SpringBoot</h3>
+<p>为了简化 Spring 的手动配置依赖而发明的框架。springboot 能够简化 Spring 的配置是因为他的自动装配原理。</p>
+<h4 id="%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6" tabindex="-1">四大组件</h4>
+<p>四大组件分别是：starter， autoconfigure, CLI 以及 actuator</p>
+<ul>
+<li>starter
+<ul>
+<li>mybatis-spring-boot-starter: Starter 帮我们封装好了所有需要的依赖,避免我们自己添加导致的一些 Jar<strong>包冲突</strong>或者<strong>缺少包</strong>的情况；</li>
+</ul>
+</li>
+<li>autoconfigure</li>
+<li>Spring Boot CLI 是一个命令行使用 Spring Boot 的客户端工具；主要功能如下：初始化 Spring Boot 项目</li>
+<li>actuator 是 Spring Boot 的监控插件，本身提供了很多接口可以获取当前项目的各项运行状态指标。</li>
+</ul>
+<h4 id="springboot-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86" tabindex="-1">SpringBoot 自动装配原理</h4>
+<ol>
+<li>什么是 SpringBoot 自动装配？
+答：自动装配是通过<strong>条件注解</strong>和<strong>启动器</strong>两个机制实现的。条件注解机制使 Spring Boot 能够根据一定的规则，在 classpath 中查找特定条件的 bean，并确定其是否应该自动配置。启动器则是一组依赖的集合，它包含了应用程序所需的各种库和配置，使得开发者可以快速地集成和使用这些功能。</li>
+</ol>
+<h4 id="%E4%B8%80%E4%B8%AA-springboot-%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%90%AF%E5%8A%A8" tabindex="-1">一个 Springboot 程序的启动</h4>
+<p>@SpringBootApplication 注解标记的启动类运行了之后。（@EnableAutoConfiguration 注解用于开启自动配置功能。）
+<img src="image/interview/1713084842628.png" alt="1713084842628"></p>
+<ol>
+<li>Spring Boot 中 <strong>@EnableAutoConfiguration</strong> 中@import（{AutoConfigurationImportSelector.class}）会加载 META-INF/<strong>spring.factories</strong>文件，该文件中配置了所有自动装配的类。</li>
+<li>根据条件注解(<strong>@ConditionalOnClass</strong>)和实现类，Spring Boot 筛选出符合条件的类，并根据类中的配置信息来自动配置 Bean。</li>
+<li>配置完成后，Spring Boot 会将所有的 Bean 注册到容器中，以供其他组件使用。</li>
+</ol>
+<ul>
+<li>
+<p><strong>Spring Boot 的启动过程：</strong> 在 Spring Boot 启动过程中，会自动扫描一个指定文件 spring.factrories,并加载这个文件下的自动配置类（ <code>@Configuration</code>注解标记，并通过 <code>@EnableAutoConfiguration</code>注解启用自动装配）。通过条件注解的判断，选择合适的自动配置类进行装配。自动配置类中的 Bean 定义会被 Spring 容器自动加载，并根据条件进行实例化和装配。</p>
+<p><img src="image/interview2/1710498159403.png" alt="1710498159403"></p>
+</li>
+</ul>
+<h3 id="%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C" tabindex="-1">计算机网络</h3>
+<h4 id="https" tabindex="-1">HTTPS</h4>
+<ol>
+<li>端口号是<strong>默认的 443</strong>，它再用 DNS 解析域名，得到目标的 IP 地址，然后就可以使用三次握手与网站建立 TCP 连接了。</li>
+<li>当服务器收到客户端的 HTTPS 请求后，会向客户端返回一个<strong>CA 证书</strong>。这个证书包含了<strong>服务器的公钥</strong>和一些其他信息，用于证明服务器的身份和公钥的合法性。</li>
+<li>客户端生成对称密钥并使用公钥加密：如果证书验证成功，客户端会生成一个对称密钥，并使用从证书中获取的公钥对这个对称密钥进行加密。然后，客户端将这个加密后的对称密钥发送给服务器。</li>
+<li><strong>服务器解密对称密钥</strong>：服务器收到客户端发送的加密后的对称密钥后，会使用自己的私钥进行解密，得到客户端生成的对称密钥。</li>
+<li><strong>双方使用对称密钥进行通信</strong></li>
+</ol>
+<h4 id="%E7%BD%91%E7%BB%9C%E6%BC%8F%E6%B4%9E" tabindex="-1">网络漏洞</h4>
+<ul>
+<li>跨站脚本（XSS）攻击：在网站中添加恶意脚本，访问非法网站，来窃取用户 cookie 等信息。攻击者就可以伪装成受害用户访问网站，执行未经授权的操作，如更改密码、发起交易等。
+<ul>
+<li>HTTPOnly 标志设置 cooki</li>
+</ul>
+</li>
+<li>跨站请求伪造：攻击者利用用户在其他网站上的有效会话信息来伪造请求，并欺骗目标网站执行非本意的操作。为了防止 CSRF 攻击，网站开发者需要采取一系列的安全措施，如检查请求的来源（Referer 头）、添加随机令牌（CSRF Token）等。
+<ul>
+<li>请求头检查</li>
+<li>CSRF 令牌</li>
+</ul>
+</li>
+<li>SQL 注入是一种攻击技术，攻击者通过在应用程序的输入字段中插入恶意的 SQL 代码
+<ul>
+<li>MyBatis 查询参数化</li>
+<li>对用户输入进行严格的验证</li>
+<li>数据库权限</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E9%A1%B9%E7%9B%AE" tabindex="-1">项目</h3>
+<h4 id="%E5%9F%BA%E4%BA%8E-springboot-%E5%92%8C-springcloud-%E5%AE%9E%E7%8E%B0%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E3%80%82" tabindex="-1">基于 SpringBoot 和 SpringCloud 实现微服务架构。</h4>
+<p>SpringCloud：nacos、openfeign、gateway</p>
+<h5 id="nacos%3A" tabindex="-1">nacos:</h5>
+<ol>
+<li><strong>服务发现</strong>：当用户服务和订单服务启动时，它们会将自己的服务信息（如 IP 地址、端口号、服务名称等）注册到 Nacos 服务注册中心。注册的信息会存储在 Nacos 中，供其他服务查询和发现。当用户服务需要调用订单服务时，它会向 Nacos 服务注册中心发送请求，查询订单服务的地址信息。Nacos 会返回订单服务的地址列表给用户服务。用户服务会根据一定的策略（如负载均衡策略）选择一个地址进行调用。</li>
+<li>配置管理：Nacos 可以作为一个配置中心，假设我们需要修改订单服务的某个配置项（如数据库连接字符串）。我们可以登录到 Nacos 的配置管理界面，找到对应的配置文件，并进行修改。修改完成后，我们可以点击“发布”按钮，将新的配置推送到所有订阅了该配置的订单服务实例。</li>
+</ol>
+<h5 id="gateway" tabindex="-1">Gateway</h5>
+<p>Spring Cloud Gateway 它提供了动态路由、过滤器、集成 Spring Cloud Security 等功能，非常适合在微服务架构中作为 API 网关使用。</p>
+<h5 id="openfeign" tabindex="-1">Openfeign</h5>
+<p>被抛弃怎么办</p>
+<h4 id="%E4%BD%BF%E7%94%A8-mybatisplus-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%82" tabindex="-1">使用 MybatisPlus 操作数据库。</h4>
+<p>对 service 和 mapper 层都做了封装。可以直接调用。复杂查询自己写 sql 语句</p>
+<h4 id="%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%9A%E8%AF%9D%E7%8A%B6%E6%80%81%E4%BF%9D%E6%8C%81" tabindex="-1">浏览器和服务器会话状态保持</h4>
+<h5 id="cookie" tabindex="-1">cookie</h5>
+<p>存在浏览器端。
+这个 cookie 是一个可以保持会话状态的方式，他里面包含了 sessionid 和一些会话信息，浏览器会将这个字符串存储在本地，并在后续的请求中发送给服务器，来让服务器验证会话的有效性。</p>
+<h5 id="session" tabindex="-1">Session</h5>
+<p>存在服务器端，可以通过 set-cookie 将 session ID 作为 cookie 的一部分发送给浏览器，以便浏览器能够存储并在后续的请求中发送它。</p>
+<p>cookie-session 机制存在问题。
+1、session 需要存储，占用服务器资源。
+2、在 web 服务器集群的场景下，如果两次请求发给了不同的服务器，就不能保持会话状态了。</p>
+<h5 id="jwt" tabindex="-1">JWT</h5>
+<p>加密字符串
+token=加密信息+负载数据（用户名，用户 id）+密钥</p>
+<h4 id="%E7%99%BB%E5%BD%95%EF%BC%88%E8%AE%A4%E8%AF%81%EF%BC%89%E6%96%B9%E5%BC%8F%EF%BC%9A" tabindex="-1">登录（认证）方式：</h4>
+<p>项目：</p>
+<p>微信小程序的授权登录认证机制相对复杂，但主要流程可以概述如下：</p>
+<ol>
+<li><strong>注册开发者账号</strong> ：首先，开发者需要在微信开放平台注册一个开发者账号，并申请到 AppID 和 AppSecret。同时，还需要申请开启“获取用户信息”的权限。</li>
+<li><strong>用户触发登录操作</strong> ：当用户在微信小程序中触发登录操作时，小程序会调用微信提供的 wx.login 接口来获取用户的临时登录凭证（code）。</li>
+<li><strong>传递 code 到开发者服务器</strong> ：小程序将获取到的 code 回传到开发者服务器。</li>
+<li><strong>换取 openid 和 session_key</strong> ：开发者服务器使用 appid、appsecret 以及 code 向微信服务器发起请求，以换取<strong>用户的唯一标识 openid 和会话密钥 session_key</strong>。</li>
+<li><strong>生成自定义登录态</strong> ：开发者服务器根据 openid 来生成自定义登录态，用于后续业务逻辑中前后端交互时识别用户身份。</li>
+<li><strong>客户端保存自定义登录态</strong> ：客户端保存后端生成的自定义登录态，并在下一次发送请求时带上这个自定义登录态。</li>
+<li><strong>检测登录态</strong> ：当用户重新进入小程序时，小程序会调用 wx.checkSession 接口来检测登录态是否有效。如果无效，则需要重新进行登录操作。</li>
+<li><strong>钥匙登录凭据</strong>：在这个流程中，真正的“钥匙”可以看作是 <code>openid</code>和 <code>session_key</code>的组合。<code>openid</code>是用户在微信开放平台帐号下的唯一标识，而 <code>session_key</code>则是对用户数据进行加密签名的密钥。这两者一起构成了用户在开发者服务器上的唯一身份标识，并允许开发者服务器对用户进行身份验证和授权。
+<img src="image/interview/1715496086968.png" alt="1715496086968"></li>
+</ol>
+<h5 id="%E9%94%81%E5%92%8C%E9%92%A5%E5%8C%99" tabindex="-1">锁和钥匙</h5>
+<p>在登录认证的过程中，通常所说的“锁”和“钥匙”可以类比为系统中的认证机制和用户提供的凭据。</p>
+<ol>
+<li><strong>锁（认证机制）</strong> ：这通常指的是系统用来验证用户身份的一系列安全措施和规则。例如，一个网站或应用可能使用用户名和密码、电子邮件验证码、手机验证码、生物识别（如指纹或面部识别）、OAuth、OpenID Connect 等机制作为“锁”。这些“锁”的目的是确保只有授权的用户能够访问受保护的资源。</li>
+<li><strong>钥匙（用户凭据）</strong> ：用户凭据是用户用来解锁（即验证身份）并访问受保护资源的信息。这通常包括用户名和密码、电子邮件地址、手机号码、个人生物识别信息（如指纹或面部扫描）、OAuth 令牌、OpenID Connect ID 令牌等。用户需要提供正确的凭据才能通过系统的认证机制。</li>
+</ol>
+<h5 id="%E9%AA%8C%E8%AF%81-token-%E7%9A%84%E7%9C%9F%E4%BC%AA" tabindex="-1">验证 token 的真伪</h5>
+<ul>
+<li><strong>验证签名</strong>：当服务器接收到客户端发送的 JWT 时，它应该使用与生成 JWT 时相同的私钥（签名）来重新计算 Signature 部分。然后，将计算出的签名与 JWT 中的 Signature 部分进行比较。如果两者匹配，则说明 JWT 是有效的，没有被篡改。</li>
+<li><strong>检查 Payload 中的关键信息</strong>：虽然 Payload 部分的数据是可见的（除非进行了加密），但服务器仍然应该验证其中的关键信息，如 openid、username 等是否与数据库中的记录相匹配。这可以确保 JWT 是为真实用户生成的。</li>
+<li><strong>使用 HTTPS</strong>：由于 JWT 是在客户端和服务器之间传输的，因此应该使用 HTTPS 来确保传输过程中的安全性。HTTPS 可以防止 JWT 在传输过程中被截获和篡改。</li>
+</ul>
+<ul>
+<li><strong>后端校验</strong> ：在开发者服务器上，可以使用微信提供的 <code>auth.code2Session</code> 接口，结合用户的登录凭证（如 <code>code</code>），向微信服务器请求最新的 <code>session_key</code>。然后，将请求到的 <code>session_key</code> 与之前存储的该用户的 <code>session_key</code> 进行比对，确保它们一致。如果不一致，则说明 <code>session_key</code> 已经失效，需要重新执行登录流程。</li>
+</ul>
+<h5 id="%E8%AE%A4%E8%AF%81%E6%96%B9%E5%BC%8F%E6%9C%89%E5%87%A0%E7%A7%8D" tabindex="-1">认证方式有几种</h5>
+<p><strong>1. 账号密码</strong>：但安全性相对较低，容易受到密码泄露和猜测攻击的影响。
+<strong>2. 双因素认证</strong>：短信验证码、一次性令牌
+<strong>3. 社交登录</strong>：微信授权：</p>
+<ul>
+<li>用户点击登录</li>
+<li>获取向调用微信 wx.login()接口获取 code 临时凭证</li>
+<li>用 code 和小程序 id 和小程序密钥发送给微信开放接口</li>
+<li>获取用户 openid 和会话密钥</li>
+<li>是否是新人</li>
+<li>JWT 制作 token</li>
+</ul>
+<p><strong>4. 单点登录（SSO）</strong>：是一种身份验证和授权机制，到多个相关但独立的软件系统或应用程序中。身份验证中心+令牌</p>
+<p><strong>安全考虑：</strong></p>
+<ul>
+<li>令牌安全：签名+加密</li>
+<li>令牌劫持：使用 HTTPS 协议加密通信，防止网络通信被窃听或者篡改。</li>
+<li>防止跨站脚本（XSS）攻击：在客户端的代码中使用适当的安全性措施，防止受到 XSS 攻击。避免在浏览器中存储 JWT 令牌，使用 HttpOnly 标志来设置令牌的 Cookie，这样可以防止 JavaScript 代码访问 Cookie 中的 JWT 令牌。</li>
+<li>DDos 攻击：限制验证码的发送频率，防止恶意攻击和滥用。</li>
+<li>暴力破解：多因素验证、IP 地址限制、账号锁定</li>
+</ul>
+<p>其他安全要求</p>
+<ul>
+<li>防止注入攻击：使用参数化查询或 ORM 框架等安全的数据库操作方式，防止 SQL 注入攻击和其他类型的注入攻击。</li>
+<li>防止跨站脚本攻击（XSS）：在开发过程中对用户输入进行过滤和转义，确保不会执行恶意脚本，防止 XSS 攻击。</li>
+<li>数据传输安全：用 HTTPS——端口 443；SSL/TLSTL；通信加密、数字证书、可信第三方。</li>
+</ul>
+<h4 id="%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8" tabindex="-1">接口安全</h4>
+<ul>
+<li>安全问题
+<ul>
+<li>Token 被劫持：Token 是用于验证用户身份和权限的凭据，如果 Token 被恶意用户截获，那么他们可能会冒充合法用户访问系统资源。</li>
+<li>DOS 攻击（拒绝服务攻击）：攻击者通过发送大量无效或恶意的请求来消耗系统资源，导致系统无法处理正常请求。</li>
+<li>重复提交：攻击者可能会重复提交相同的请求，以试图绕过系统的限制或达到其他非法目的。</li>
+<li>数据篡改：在数据传输过程中，恶意用户可能会修改数据内容，导致系统接收到错误或无效的数据。</li>
+</ul>
+</li>
+<li>怎么在接口上加权限控制
+<ul>
+<li>使用注解（如@PreAuthorize、@Secured 等）来标记需要权限控制的方法。</li>
+</ul>
+</li>
+</ul>
+<h5 id="%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA%E5%99%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84" tabindex="-1">登录拦截器是怎么实现的</h5>
+<p>登录拦截器的实现首先是<strong>写他的配置类</strong>：继承了 WebMvcConfigurationSupport 类重写了 addInterceptors 方法，<strong>配置上要拦截的路径</strong>，所有的请求都要拦截，除了登录页面请求。然后<strong>实现 HandlerInterceptor 接口实现 preHandle 方法</strong>，检查用户是否已经登录，如果没有则重定向到登录页面。如果已经登录则从 token 中获取用户名和用户 id。</p>
+<p>登录拦截器可以确保只有经过验证的用户才能访问系统的特定部分。未经授权的用户尝试访问受保护的资源时，拦截器会拦截请求并可能重定向到登录页面或显示错误消息。</p>
+<p><a href="https://blog.csdn.net/weixin_42822484/article/details/107893586">Springboot 自定义注解实现简单的接口权限控制，替代 Shiro/SpringSecurity_shiro 如何替代-CSDN 博客</a>
+<img src="image/interview/1715496177869.png" alt="1715496177869"></p>
+<h4 id="redis-1" tabindex="-1">Redis</h4>
+<p>内存数据库、读取效率高、支持持久化</p>
+<p>登录小程序放用户信息</p>
+<p>购物车<strong>hash 类型</strong>，存储购物车数据</p>
+<p>生成订单信息，存储商品锁定和其他信息</p>
+<p>爆款商品，使用<strong>zset 类型</strong>，更新 hotscore。更新到 ES 中。redisTemplate.opsForZSet().incrementScore(key,value)</p>
+<h4 id="redission-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81" tabindex="-1">Redission 分布式锁</h4>
+<p>库存锁定，没有拿到锁线程不会阻塞，会立刻返回 false。</p>
+<p><code>synchronized</code>只是针对 <code>单一服务器</code>的 <code>JVM</code>进行 <code>加锁</code>，但是分布式是很多个不同的服务器。</p>
+<p>除了分布式锁还有</p>
+<p>redis+Lua 脚本实现</p>
+<p>redis 命令：set、setNX</p>
+<p><a href="https://www.zhihu.com/question/402246926">电商系统如何防止超卖？ - 知乎 (zhihu.com)</a></p>
+<pre class='hljs'><code><div><span class="hljs-comment">//redission分布式锁示例</span>
+<span class="hljs-meta">@GetMapping(&quot;/reduceStock3&quot;)</span>
+    <span class="hljs-meta">@ApiOperation(value = &quot;reduceStock3&quot;)</span>
+    <span class="hljs-meta">@ApiOperationSupport(order = 3)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">reduceStock3</span><span class="hljs-params">()</span></span>{
+        RLock rLock = redissonClient.getLock(<span class="hljs-string">&quot;lock:stock&quot;</span>);
+
+        <span class="hljs-comment">//尝试获取分布式锁20秒，获取失败则返回</span>
+        <span class="hljs-keyword">boolean</span> isSuccess = <span class="hljs-keyword">true</span>;
+        <span class="hljs-keyword">try</span> {
+            isSuccess = rLock.tryLock(<span class="hljs-number">20</span>, TimeUnit.SECONDS);<span class="hljs-comment">//尝试获取锁</span>
+        } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+            isSuccess = <span class="hljs-keyword">false</span>;
+        }
+        <span class="hljs-keyword">if</span> (!isSuccess){
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;fail&quot;</span>;
+        }
+        <span class="hljs-keyword">try</span>{
+            <span class="hljs-comment">// 获取Redis数据库中的商品数量</span>
+            <span class="hljs-keyword">int</span> stock = redisService.getCacheObject(<span class="hljs-string">&quot;stock&quot;</span>);
+            <span class="hljs-comment">// 减库存</span>
+            <span class="hljs-keyword">if</span>(stock &gt; <span class="hljs-number">0</span>) {
+                stock = stock -<span class="hljs-number">1</span>;
+                redisService.setCacheObject(<span class="hljs-string">&quot;stock&quot;</span>, stock);
+                System.out.println(<span class="hljs-string">&quot;商品扣减成功，剩余商品：&quot;</span>+stock);
+            }<span class="hljs-keyword">else</span> {
+                System.out.println(<span class="hljs-string">&quot;库存不足.....&quot;</span>);
+            }
+        }<span class="hljs-keyword">catch</span> (Exception e){
+            e.printStackTrace();
+        }<span class="hljs-keyword">finally</span> {
+            rLock.unlock();
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;ok&quot;</span>;
+    }
+</div></code></pre>
+<h4 id="es" tabindex="-1">ES</h4>
+<p>sku 信息</p>
+<p>爆款产品</p>
+<p>Springdata：规范命名</p>
+<p>ES 专门为全文搜索设计，具有倒排索引等高效的数据结构和算法。kibana 可以对文本内容进行分词、词项匹配等操作，提供更精确和全面的搜索结果。这对于商品搜索模块而言尤为重要，因为用户可能会通过商品的名称、描述、标签等多个维度进行搜索。</p>
+<h4 id="%E5%A4%9A%E7%BA%BF%E7%A8%8B-1" tabindex="-1">多线程</h4>
+<p>商品详情页:商品信息、优惠券、热度</p>
+<p>线程池：自己 new</p>
+<h4 id="nginx" tabindex="-1">Nginx</h4>
+<ul>
+<li>作为 http 服务器，处理静态页面快。</li>
+<li>Nginx 还经常被用作反向代理服务器。在前端项目中，这通常意味着 Nginx 会将客户端的请求转发到后端服务器（如 Node.js、Python、Java 等应用服务器），然后将后端服务器的响应返回给客户端。客户端在这个过程中并不知道 Nginx 的存在，它们只与 Nginx 进行通信</li>
+<li>Nginx+GateWay</li>
+</ul>
+<p>用户请求首先经过 Nginx 的流量网关，进行基本的请求过滤和负载均衡。然后，请求被转发到 Gateway 业务网关，根据业务需求进行路由、断言、过滤等操作，并将请求传递到相应的业务微服务中。这种架构允许根据不同的需求对流量进行灵活控制和管理。</p>
+<h4 id="oss-%E9%98%BF%E9%87%8C" tabindex="-1">OSS 阿里</h4>
+<h4 id="%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98" tabindex="-1">微信支付</h4>
+<h4 id="%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F" tabindex="-1">微信小程序</h4>
+<h4 id="docket" tabindex="-1">Docket</h4>
+
+    </div>
+</body>
+</html>
